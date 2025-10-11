@@ -1,0 +1,299 @@
+---
+import GithubIcon from "../icons/Github.astro";
+import NextjsIcon from "../icons/Nextjs.astro";
+import WebIcon from "../icons/Web.astro";
+import TailwindCSSIcon from "../icons/TailwindCSS.astro";
+import ReactIcon from "../icons/React.astro";
+import ExpoIcon from "../icons/Expo.astro";
+import CSSIcon from "../icons/CSS.astro";
+import OpenAIIcon from "../icons/OpenAI.astro";
+import AndroidIcon from "../icons/Android.astro";
+import JavascriptIcon from "../icons/Javascript.astro";
+import TypescriptIcon from "../icons/Typescript.astro";
+import SupabaseIcon from "../icons/Supabase.astro";
+import PineconeIcon from "../icons/Pinecone.astro";
+import LinkButton from "./LinkButton.astro";
+import Carrousel from "./Carrousel.astro";
+
+const currentLocale = Astro.currentLocale || "en";
+
+const TAGS = {
+  NEXT: {
+    name: "Next.js",
+    class: "bg-[#003159] text-white",
+    icon: NextjsIcon,
+  },
+  TAILWIND: {
+    name: "TailwindCSS",
+    class: "bg-[#003159] text-white",
+    icon: TailwindCSSIcon,
+  },
+  REACT: {
+    name: "React",
+    class: "bg-[#003159] text-white",
+    icon: ReactIcon,
+  },
+  REACTNATIVE: {
+    name: "React Native",
+    class: "bg-[#003159] text-white",
+    icon: ReactIcon,
+  },
+  EXPO: {
+    name: "Expo",
+    class: "bg-[#003159] text-white",
+    icon: ExpoIcon,
+  },
+  JAVASCRIPT: {
+    name: "Javascript",
+    class: "bg-[#003159] text-white",
+    icon: JavascriptIcon,
+  },
+  TYPESCRIPT: {
+    name: "Typescript",
+    class: "bg-[#003159] text-white",
+    icon: TypescriptIcon,
+  },
+  CSS: {
+    name: "CSS",
+    class: "bg-[#003159] text-white",
+    icon: CSSIcon,
+  },
+  AI: {
+    name: "OpenAI",
+    class: "bg-[#003159] text-white",
+    icon: OpenAIIcon,
+  },
+  SUPABASE: {
+    name: "Supabase",
+    class: "bg-[#003159] text-white",
+    icon: SupabaseIcon,
+  },
+  PINECONE: {
+    name: "Pinecone",
+    class: "bg-[#003159] text-white",
+    icon: PineconeIcon,
+  },
+};
+
+interface Tag {
+  name: string;
+  class: string;
+  icon: typeof NextjsIcon | typeof TailwindCSSIcon; // o cualquier tipo de icono que estés utilizando
+}
+
+interface ProjectCardProps {
+  title: string;
+  description?: string;
+  link?: string;
+  github?: string;
+  image: string | string[];
+  tags?: Tag[];
+  app: boolean;
+}
+
+const PROJECTS: ProjectCardProps[] = [
+  {
+    title: "Pursuit",
+    description:
+      currentLocale === "es"
+        ? `Aplicación móvil desarrollada con React Native y Expo, integrando Supabase para servicios backend y autenticación, y utilizando OpenAI.
+
+Implementa un modelo de Retrieval Augmented Generation (RAG) con Pinecone para generar planes de entrenamiento y nutrición personalizados basados en los datos de cada usuario.
+
+La aplicación combina IA y análisis de datos para brindar recomendaciones ajustadas que optimizan el rendimiento individual y el bienestar general.`
+        : `A mobile application developed with React Native and Expo, integrating Supabase for backend services and authentication, and utilizing OpenAI.
+
+It implements a Retrieval Augmented Generation (RAG) model with Pinecone to generate personalized training and nutritional plans based on each user's personal data.
+
+The application combines AI and data analysis to provide tailored recommendations that optimize individual performance and overall well-being.`,
+    // link: "https://www.rentscape.co/",
+    github: "https://github.com/AJoaquinLizarraga/PursuitMobile/tree/Joaquin",
+    image: [
+      "/projects/Pursuit/Pursuit3.webp",
+      "/projects/Pursuit/PursuitOnboarding.webp",
+      "/projects/Pursuit/PursuitTraining2.webp",
+      "/projects/Pursuit/Pursuittrainingscreen.webp",
+      "/projects/Pursuit/PursuitIpad.webp",
+    ],
+    tags: [
+      TAGS.REACTNATIVE,
+      TAGS.EXPO,
+      TAGS.AI,
+      TAGS.PINECONE,
+      TAGS.SUPABASE,
+      TAGS.TAILWIND,
+      TAGS.TYPESCRIPT,
+    ],
+    app: false,
+  },
+  {
+    title: "Rentscape",
+    description:
+      currentLocale === "es"
+        ? `Una integración dentro de la plataforma Rentscape que incorpora un chat impulsado por IA.
+
+El sistema combina un chat interactivo con function calling para generar datos precisos, que luego se utilizan para realizar búsquedas en Pinecone y encontrar las mejores propiedades en alquiler.
+
+La solución ofrece una experiencia de búsqueda intuitiva y personalizada, agilizando la toma de decisiones en el mercado inmobiliario.`
+        : `An integration within the Rentscape platform that features an AI-powered chat solution.
+
+This system leverages interactive chat combined with function calling to generate precise data, which is then used to perform searches on Pinecone for the best rental properties.
+
+The solution offers an intuitive, personalized search experience, streamlining the decision-making process in the real estate market.`,
+    link: "https://www.rentscape.co/",
+    // github: "https://github.com/AJoaquinLizarraga/PokedexApp-ReactNative.git",
+    image: [
+      "/projects/Rentscape/rentscapechat.webp",
+      "/projects/Rentscape/rentscapeCarrousel.webp",
+    ],
+    tags: [
+      TAGS.NEXT,
+      TAGS.TAILWIND,
+      TAGS.TYPESCRIPT,
+      TAGS.AI,
+      TAGS.PINECONE,
+      TAGS.SUPABASE,
+    ],
+    app: false,
+  },
+  {
+    title: "Pokedex App",
+    description:
+      currentLocale === "es"
+        ? "Aplicación desarrollada con React Native y Expo usando la API de Pokémon para mostrar información de los pokémon. La persistencia de datos se maneja con la librería AsyncStorage."
+        : "App developed with React Native and Expo using the Pokemon api, to display information about pokemon. Data persistence is handled with the AsyncStorage library.",
+    link: "https://drive.google.com/file/d/1YFbbOr6ijkfd_z4Uv9j8WQSwuhueabli/view?usp=drive_link",
+    github: "https://github.com/AJoaquinLizarraga/PokedexApp-ReactNative.git",
+    image: [
+      "/projects/pokedex/pokedexMain.webp",
+      "/projects/pokedex/PokedexScreens.webp",
+      "/projects/pokedex/PokedexScreens2.webp",
+      "/projects/pokedex/PokedexScreens4.webp",
+      "https://www.youtube.com/embed/XYLJSnfaQ54?si=6zV0Yp5DKQTFxBw9",
+    ],
+    tags: [TAGS.REACTNATIVE, TAGS.TAILWIND, TAGS.EXPO, TAGS.JAVASCRIPT],
+    app: true,
+  },
+  {
+    title: "Nasa App",
+    description:
+      currentLocale === "es"
+        ? "Desarrollé una app con React Native CLI y TypeScript para ver las imágenes tomadas por el telescopio Hubble, provistas por la API 'Astronomy Picture of the Day' de la NASA."
+        : "I developed an app with react native CLI and typescript to view the pictures taken by the Hubble telescope provided by NASA's 'Astronomy Picture of the Day' api.",
+    link: "",
+    github: "https://github.com/AJoaquinLizarraga/NasaApp.git",
+    image: [
+      "/projects/NasaApp/MainScreens.webp",
+      "/projects/NasaApp/DetailScreens.webp",
+    ],
+    tags: [TAGS.TYPESCRIPT, TAGS.REACTNATIVE, TAGS.CSS],
+    app: true,
+  },
+  {
+    title: "Pomodoro App",
+    description:
+      currentLocale === "es"
+        ? "Aplicación desarrollada con React Native Expo y Tailwind; una herramienta simple pero efectiva para mejorar la productividad. Con una interfaz minimalista y fácil de usar, permite dividir el tiempo en periodos de trabajo y descanso usando la técnica Pomodoro."
+        : "App developed with React Native Expo and Tailwind is a simple but effective tool to improve productivity. With a minimalist and easy to use interface, this application allows users to divide their time into work and rest periods using the Pomodoro technique.",
+    link: "",
+    github: "https://github.com/AJoaquinLizarraga/PomodoroAppMobile.git",
+    image: "/projects/PomodoroApp/MainScreens.webp",
+    tags: [TAGS.JAVASCRIPT, TAGS.REACTNATIVE, TAGS.CSS],
+    app: true,
+  },
+  {
+    title: "Blog Web",
+    description:
+      currentLocale === "es"
+        ? "Blog dinámico entregado para su incorporación al sitio web de la empresa. Colaboración entre estudiantes aplicando la metodología ‘scrum’. Interfaz de usuario construida en Next.js 13, con Zustand para el manejo de estado global. Servidor en AWS Lambda, configurando AWS API Gateway como disparador. Almacenamiento de imágenes en AWS S3."
+        : "App Dynamic blog delivered for incorporation to the company website. Collaboration between students applying the “scrum” methodology. User Interface built on Next.js 13, with Zustand implementation for global state management. Server built on AWS Lambda, configuring AWS Api Gateway as event trigger. Image storage system on AWS s3 Buckets.",
+    link: "https://www.bocancorporation.com",
+    github: "",
+    image: [
+      "/projects/BocancorpApp/MainScreen.webp",
+      "/projects/BocancorpApp/DetailScreen.webp",
+      "/projects/BocancorpApp/DetailScrolledScreen.webp",
+      "/projects/BocancorpApp/ActiveScreen.webp",
+      "/projects/BocancorpApp/PostScreen.webp",
+      "/projects/BocancorpApp/ProfilesScreen.webp",
+      "/projects/BocancorpApp/MDScreen.webp",
+      "/projects/BocancorpApp/StackScreen.webp",
+      "https://www.youtube.com/embed/KRTnl7txiGU?si=Q68xbzdxvZB26Tpz",
+    ],
+    tags: [
+      TAGS.JAVASCRIPT,
+      TAGS.TYPESCRIPT,
+      TAGS.REACT,
+      TAGS.NEXT,
+      TAGS.CSS,
+      TAGS.TAILWIND,
+    ],
+    app: false,
+  },
+];
+
+---
+
+<section class="flex flex-col gap-y-16">
+  {
+    PROJECTS.map(({ image, title, description, tags, link, github, app }) => (
+      <article>
+        <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
+        <p class="text-lg mb-4 text-pretty">{description}</p>
+        <ul class="flex gap-x-4 gap-y-2 flex-wrap sm:flex-wrap md:flex-row lg:flex-row mb-4">
+          {tags &&
+            tags.map((tag) => {
+              return (
+                <li>
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class}  py-1 px-2`}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              );
+            })}
+        </ul>
+        {typeof image === "string" ? (
+          <div class="flex max-w-2xl  mx-auto">
+            <div class="relative w-full">
+              <div class="overflow-hidden relative h-64 rounded-lg sm:h-80 xl:h-96 2xl:h-[480px] z-20">
+                <img
+                  src={image}
+                  class="relative top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 object-cover"
+                  alt={`Screenshot of ${title}`}
+                />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <Carrousel images={image} />
+        )}
+        <footer class="flex justify-center gap-x-4 mt-2">
+          {github && (
+            <LinkButton link={github}>
+              <GithubIcon class="size-6 mr-1" />
+              {currentLocale === "es" ? "Ver código fuente" : "Watch source code"}
+            </LinkButton>
+          )}
+          {link && (
+            <LinkButton link={link}>
+              {app === true ? (
+                <>
+                  <AndroidIcon class="size-6 mr-1" />
+                  {currentLocale === "es" ? "Descargar app Android" : "Download Android App"}
+                </>
+              ) : (
+                <>
+                  <WebIcon class="size-6 mr-1" />
+                  {currentLocale === "es" ? "Ir al sitio web" : "Go to web site"}
+                </>
+              )}
+            </LinkButton>
+          )}
+        </footer>
+      </article>
+    ))
+  }
+</section>

@@ -1,0 +1,56 @@
+---
+const { currentLocale, getRelativeLocaleUrl } = Astro.props;
+
+console.log(getRelativeLocaleUrl(currentLocale, "/experience"));
+---
+
+<header
+  class="flex justify-center items-center py-6 mx-auto fixed top-0 w-full xl:w-[1120px] z-40"
+>
+  <nav
+    class={`
+      border border-black
+      rounded-full px-3 py-2
+      flex flex-row items-center
+      bg-gray-200/10 dark:bg-black/50  backdrop-blur-2xl
+      `}
+  >
+    <a
+      class="hover:bg-white/10 rounded-full px-3 transition"
+      href={getRelativeLocaleUrl(currentLocale, "/#").replace(/\/$/, "")}
+      >{currentLocale === "es" ? "Inicio" : "Home"}
+    </a>
+    <a
+      class="hover:bg-white/10 rounded-full px-3 transition"
+      href={getRelativeLocaleUrl(currentLocale, "/#experience").replace(
+        /\/$/,
+        ""
+      )}>{currentLocale === "es" ? "Experiencia" : "Experience"}</a
+    >
+
+    <a
+      class="hover:bg-white/10 rounded-full px-3 transition"
+      href={getRelativeLocaleUrl(currentLocale, "/#projects").replace(
+        /\/$/,
+        ""
+      )}>{currentLocale === "es" ? "Proyectos" : "Projects"}</a
+    >
+    <a
+      class="hover:bg-white/10 rounded-full px-3 transition"
+      href={getRelativeLocaleUrl(currentLocale, "/#certifications").replace(
+        /\/$/,
+        ""
+      )}>{currentLocale === "es" ? "Certificaciones" : "Certifications"}</a
+    >
+    <a
+      class="hover:bg-white/10 rounded-full px-3 transition"
+      href={getRelativeLocaleUrl(currentLocale, "/#about").replace(/\/$/, "")}
+      >{currentLocale === "es" ? "Sobre mí" : "About"}</a
+    >
+    <a
+      class="hover:bg-white/10 rounded-full px-3 transition"
+      href={getRelativeLocaleUrl(currentLocale, "/#").replace(/\/$/, "")}
+      >{currentLocale === "es" ? "Contacto" : "Contact"}</a
+    >
+  </nav>
+</header>

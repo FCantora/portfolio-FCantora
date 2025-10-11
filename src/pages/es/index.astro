@@ -1,0 +1,120 @@
+---
+import SectionContainer from "../../components/SectionContainer.astro";
+import Layout from "../../layouts/Layout.astro";
+
+import AboutMe from "../../components/AboutMe.astro";
+import Badge from "../../components/Badge.astro";
+import Briefcase from "../../icons/Briefcase.astro";
+import CalendlyIcon from "../../icons/Calendly.astro";
+import CodeSandBox from "../../icons/CodeSandBox.astro";
+import Experience from "../../components/Experience.astro";
+import GithubIcon from "../../icons/Github.astro";
+import LinkedInIcon from "../../icons/LinkedIn.astro";
+import MailIcon from "../../icons/Mail.astro";
+import CVIcon from "../../icons/CV.astro";
+import Projects from "../../components/Projects.astro";
+import Certifications from "../../components/Certifications.astro";
+import CVIcon from "../../icons/CV.astro";
+import SocialPill from "../../icons/SocialPill.astro";
+import UserIcon from "../../icons/User.astro";
+import { Image } from "astro:assets";
+import miImagen from "../../assets/fcantora-IA.png";
+---
+
+<Layout
+  title="Portfolio Fernando Cantora - Desarrollador Frontend"
+  description="Contratá a Fernando para desarrollar tus aplicaciones web y móviles."
+>
+  <main>
+    <SectionContainer id="/#" class="py-12 pb-32">
+      <div class="flex flex-col md:flex-row items-center gap-x-6 mb-8">
+        <div class="w-72 aspect-square hover:scale-125 transition mb-6 md:mb-0">
+          <Image
+            src={miImagen}
+            alt="Foto del creador del sitio"
+            width={400}
+            height={400}
+            quality="high"
+            class="rounded-full w-full h-full object-cover object-center"
+          />
+        </div>
+
+        <div class="flex flex-col items-center md:items-start text-center md:text-left">
+          <h1
+            class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-col md:flex-row gap-x-4 pb-2 lg:pb-3"
+          >
+            ¡Hola! <br />Soy Fernando
+          </h1>
+          <a
+            class="flex justify-center items-center hover:scale-105 my-2 md:mt-0"
+            href="https://www.linkedin.com/in/fcantora/"
+            target="_blank"
+            rel="noopener"
+          >
+            <Badge>Contactar para contratarme</Badge>
+          </a>
+          <h2 class="text-xl lg:text-2xl opacity-80 text-wrap max-w-[700px]">
+            <span class="text-yellow-300">Desarrollador frontend y entusiasta de IA.<br /></span>
+            <span
+              class="bg-gradient-to-r from-blue-500 via-white to-blue-500 text-transparent bg-clip-text"
+              >Desde Buenos Aires, Argentina.</span
+            >
+          </h2>
+        </div>
+      </div>
+      <nav class="flex gap-4 mt-8 flex-wrap">
+        <SocialPill href="https://www.linkedin.com/in/fcantora">
+          <LinkedInIcon class="size-4 md:size-6" />
+          LinkedIn
+        </SocialPill>
+        <SocialPill href="https://github.com/FCantora">
+          <GithubIcon class="size-4 md:size-6" />
+          Github
+        </SocialPill>
+        <SocialPill href="https://calendly.com/fercantora/30min">
+          <CalendlyIcon class="size-4 md:size-6" />
+          Calendly
+        </SocialPill>
+        <SocialPill href="mailto:fer.cantora90@gmail.com">
+          <MailIcon class="size-4 md:size-6" />
+          fer.cantora90@gmail.com
+        </SocialPill>
+        <SocialPill
+          href="./assets/CVJoaquinEmanuelLizarraga.pdf"
+          download="Joaquin Emanuel Lizarraga - es"
+        >
+          <CVIcon class="size-4 md:size-6" />
+          Descargar CV
+        </SocialPill>
+      </nav>
+    </SectionContainer>
+    <SectionContainer id="experience">
+      <h2 class="text-3xl font-semibold mb-3 flex gap-x-2 items-center">
+        <Briefcase class="size-8" />
+        Experiencia Laboral
+      </h2>
+      <Experience />
+    </SectionContainer>
+    <SectionContainer id="projects">
+      <h2 class="text-3xl font-semibold mb-3 flex gap-x-2 items-center">
+        <CodeSandBox class="size-8" />
+        Proyectos
+      </h2>
+      <!-- <Projects /> -->
+    </SectionContainer>
+    <SectionContainer id="certifications">
+      <h2 class="text-3xl font-semibold mb-3 flex gap-x-2 items-center">
+        <CVIcon class="size-8" />
+        Certificaciones
+      </h2>
+      <Certifications />
+    </SectionContainer>
+    <SectionContainer id="about">
+      <h2 class="text-3xl font-semibold mb-3 flex gap-x-2 items-center">
+        <UserIcon class="size-8" />
+        Sobre mí
+      </h2>
+      <AboutMe />
+    </SectionContainer>
+  </main>
+</Layout>

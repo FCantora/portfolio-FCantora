@@ -1,22 +1,154 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "@fontsource-variable/onest";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { Image } from "astro:assets";
+import esFlag from "../assets/es.png";
+import enFlag from "../assets/en.png";
+interface Props {
+  title: string;
+  description: string;
+}
+const currentLocale = Astro.currentLocale || "en";
+const { description, title } = Astro.props;
+---
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<!doctype html>
+<html lang={currentLocale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <!-- <div
+      class="fixed top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-5%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+    > -->
+    <!-- <div class="fixed z-[-2] h-full w-full bg-neutral-900">
+      <div
+        class="absolute inset-0 bg-fuchsia-400 bg-[size:20px_20px] opacity-20 blur-[100px]"
+      >
+      </div>
+    </div> -->
+    <div
+      class="fixed inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#7c5bf7_100%)]"
+    >
+    </div>
+    <div class="relative w-full xl:w-[1120px] mx-auto">
+      <Header
+        currentLocale={currentLocale}
+        getRelativeLocaleUrl={getRelativeLocaleUrl}
+      />
+      <nav
+        class="absolute right-4 top-6 z-50 flex items-center gap-2"
+      >
+        <a
+          href={getRelativeLocaleUrl("es", "/#").replace(/\/$/, "")}
+          aria-label="Cambiar a Español"
+          class={`w-8 h-8 rounded-full overflow-hidden border flex items-center justify-center hover:scale-105 transition shadow-sm ${currentLocale === "es" ? "border-yellow-400 ring-1 ring-yellow-900" : "border-black/50"}`}
+          data-page-transition
+          title="Español"
+        >
+          <Image
+            src={esFlag}
+            alt="Español"
+            width={100}
+            height={100}
+            class="w-full h-full opacity-40 hover:opacity-100 transition"
+          />
+        </a>
+        <a
+          href={getRelativeLocaleUrl("en", "/#").replace(/\/$/, "")}
+          aria-label="Switch to English"
+          class={`w-8 h-8 rounded-full overflow-hidden border flex items-center justify-center hover:scale-105 transition shadow-sm ${currentLocale === "en" ? "border-yellow-400 ring-1 ring-yellow-900" : "border-black/50"}`}
+          data-page-transition
+          title="English"
+        >
+          <Image
+            src={enFlag}
+            alt="English"
+            width={100}
+            height={100}
+            class="w-full h-full opacity-40 hover:opacity-100 transition"
+          />
+        </a>
+      </nav>
+    </div>
+    <!-- Spacer to offset the fixed header height -->
+    <div class="h-24"></div>
+    <slot />
+    <div
+      id="page-loader"
+      class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 backdrop-blur-sm"
+    >
+      <div
+        class="w-10 h-10 border-4 border-white/30 border-t-white rounded-full animate-spin"
+        aria-label="Loading"
+      >
+      </div>
+    </div>
+    <script>
+      const loader = document.getElementById("page-loader");
+      function showLoader() {
+        if (loader) {
+          loader.classList.remove("hidden");
+          loader.classList.add("flex");
+        }
+      }
+      function hideLoader() {
+        if (loader) {
+          loader.classList.add("hidden");
+          loader.classList.remove("flex");
+        }
+      }
+      // Hide on initial paint
+      window.addEventListener("pageshow", hideLoader);
+      // Show on navigation away
+      window.addEventListener("beforeunload", showLoader);
+      // Show when clicking language buttons
+      const langLinks = document.querySelectorAll("a[data-page-transition]");
+      langLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const href = link.getAttribute("href");
+          if (!href || href.startsWith("#")) return;
+          e.preventDefault();
+          showLoader();
+          // allow next frame to paint loader, then navigate
+          requestAnimationFrame(() => {
+            window.location.href = href;
+          });
+        });
+      });
+    </script>
+    <Footer
+      currentLocale={currentLocale}
+      getRelativeLocaleUrl={getRelativeLocaleUrl}
+    />
+  </body>
+
+  <style is:global>
+    :root {
+      color-scheme: dark;
+    }
+    html {
+      font-family: "Onest Variable", system-ui, sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      /* background: #050505; */
+      background: #292727;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    @media (prefers-reduce-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</html>

@@ -1,0 +1,97 @@
+---
+import certHenry from "../assets/CertHenry.jpeg";
+import certBig from "../assets/CertBIG.jpg";
+import CertificationCard from "./CertificationCard.astro";
+const currentLocale = Astro.currentLocale || "en";
+
+const CERTS = [
+  {
+    img: certHenry,
+    alt: currentLocale === "es" ? "Ver certificado Henry" : "View Henry certificate",
+    title: currentLocale === "es" ? "SoyHenry - Certificación" : "SoyHenry - Certification",
+    description:
+      currentLocale === "es"
+        ? "+800 horas de curso teórico-práctico en JavaScript, React, Node, HTML, CSS, Express y PostgreSQL."
+        : "+800 hours of hands-on coursework in JavaScript, React, Node, HTML, CSS, Express and PostgreSQL.",
+  },
+  {
+    img: certBig,
+    alt: currentLocale === "es" ? "Ver certificado BIG" : "View BIG certificate",
+    title: currentLocale === "es" ? "BIG - Certificación" : "BIG - Certification",
+    description:
+      currentLocale === "es"
+        ? "Dominio de Prompt Engineering, automatización avanzada de flujos con n8n, web scraping inteligente y aplicación de IA en seguridad y auditoría de código."
+        : "Mastery of Prompt Engineering, advanced flow automation with n8n, intelligent web scraping, and applying AI to security and code auditing.",
+  },
+];
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  {CERTS.map(({ img, alt, title, description }) => (
+    <CertificationCard img={img} alt={alt} title={title} description={description} />
+  ))}
+</div>
+
+<div
+  id="cert-modal"
+  tabindex="-1"
+  class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/80 p-4 opacity-0 transition-opacity duration-200"
+>
+  <img
+    id="cert-modal-img"
+    alt={currentLocale === "es"
+      ? "Certificado ampliado"
+      : "Expanded certificate"}
+    class="max-h-[90vh] max-w-[90vw] rounded-lg shadow-2xl"
+  />
+</div>
+
+<script>
+  const modal = document.getElementById("cert-modal");
+  const modalImg = document.getElementById("cert-modal-img");
+  let lastActive: HTMLElement | null = null;
+  const openModal = (src: string) => {
+    if (modal instanceof HTMLElement && modalImg instanceof HTMLImageElement) {
+      modalImg.src = src;
+      lastActive = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      requestAnimationFrame(() => {
+        modal.classList.remove("opacity-0");
+        modal.classList.add("opacity-100");
+        modal.focus();
+      });
+    }
+  };
+  function closeModal() {
+    if (modal instanceof HTMLElement && modalImg instanceof HTMLImageElement) {
+      modal.classList.remove("opacity-100");
+      modal.classList.add("opacity-0");
+      const onEnd = () => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        modalImg.src = "";
+        modal.removeEventListener('transitionend', onEnd);
+        if (lastActive && lastActive instanceof HTMLElement) lastActive.focus();
+      };
+      modal.addEventListener('transitionend', onEnd);
+    }
+  }
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+    // basic focus trap: keep focus on modal when open
+    if (e.key === 'Tab' && modal instanceof HTMLElement && !modal.classList.contains('hidden')) {
+      e.preventDefault();
+      modal.focus();
+    }
+  });
+  document.querySelectorAll("[data-cert-src]")?.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const src = (btn instanceof HTMLElement) ? btn.getAttribute("data-cert-src") : null;
+      if (src) openModal(src);
+    });
+  });
+</script>

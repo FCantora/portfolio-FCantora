@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+interface Props {
+  img: ImageMetadata;
+  alt: string;
+  title: string;
+  description: string;
+}
+const { img, alt, title, description } = Astro.props as Props;
+---
+
+<article class="rounded-xl overflow-hidden bg-white/5 border border-white/10 shadow-sm transform transition duration-300 hover:scale-[1.03] hover:border-slate-300/40 hover:shadow-lg hover:shadow-slate-200/10 focus-within:ring-2 focus-within:ring-slate-300/40">
+  <button
+    type="button"
+    class="aspect-video bg-black/40 w-full cursor-zoom-in group"
+    data-cert-src={img.src}
+    aria-label={alt}
+  >
+    <Image src={img} alt={alt} class="w-full h-full object-cover transition group-hover:scale-[1.02]" />
+  </button>
+  <div class="p-4">
+    <h3 class="text-xl font-semibold mb-2">{title}</h3>
+    <p class="text-sm opacity-90 text-pretty">{description}</p>
+  </div>
+</article>

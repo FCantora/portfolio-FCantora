@@ -1,0 +1,96 @@
+---
+const { images } = Astro.props;
+// const newImages = images.push(youtube)
+---
+
+<div class="flex max-w-2xl mx-auto">
+  <div id="default-carousel" class="relative w-full" data-carousel="static">
+    <!-- Carousel wrapper -->
+    <div
+      class="overflow-hidden relative h-64 rounded-lg sm:h-80 xl:h-96 2xl:h-[480px] z-20">
+      <!-- Item 1 -->
+
+      {
+        images?.map((item: string, index: number) => {
+          if (item.startsWith("/")) {
+            return (
+              <div class="hidden ease-in-out" data-carousel-item>
+                <img
+                  id={item}
+                  src={images[index]}
+                  class="relative top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 object-cover"
+                  alt={item}
+                />
+              </div>
+            );
+          } else if (item.startsWith("https")) {
+            return (
+              <div class="hidden ease-in-out" data-carousel-item>
+                <iframe
+                  title={`Youtube Video`}
+                  width="560"
+                  height="315"
+                  src={`${images[index]}?amp&rel=0&mute=1`}
+                  allowfullscreen
+                  class="absolute bg-black top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 object-cover"
+                />
+              </div>
+            );
+          }
+        })
+      }
+    </div>
+
+    <!-- Slider controls -->
+    <div class="justify-center">
+      <button
+        type="button"
+        class="flex rounded-full absolute top-1/2 left-2 z-30 cursor-pointer group"
+        data-carousel-prev>
+        <span
+          class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 dark:group-hover:bg-white/50 group-hover:bg-gray-800/60 group-focus:outline-none">
+          <svg
+            class="w-5 h-5 dark:text-white sm:w-6 sm:h-6 text-gray-800"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path></svg
+          >
+          <!-- <span class="hidden">Previous</span> -->
+        </span>
+        <span class="sr-only">Prev</span>
+      </button>
+    </div>
+
+    <button
+      type="button"
+      class="flex rounded-full absolute top-1/2 right-2 z-30 cursor-pointer group"
+      data-carousel-next>
+      <span
+        class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 dark:group-hover:bg-white/50 group-hover:bg-gray-800/60 group-focus:outline-none"
+        data-carousel-next>
+        <svg
+          class="w-5 h-5 dark:text-white sm:w-6 sm:h-6 text-gray-800"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"></path></svg
+        >
+        <!-- <span class="hidden">Next</span> -->
+      </span>
+      <span class="sr-only">Next</span>
+    </button>
+  </div>
+
+  <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+</div>

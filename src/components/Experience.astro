@@ -1,0 +1,85 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+
+const pursuitProject = "Pursuit";
+const rentscapeProject = "Rentscape";
+const secoteamProject = "SeCo Team";
+
+const currentLocale = Astro.currentLocale || "en";
+
+const EXPERIENCE = [
+  {
+    date:
+      currentLocale === "es"
+        ? "Marzo 2024 - Septiembre 2025"
+        : "March 2024 - September 2025",
+    title:
+      currentLocale === "es"
+        ? "Desarrollador UX (React, Next.js, Tailwind y Storybook)"
+        : "UX Developer (React, Next.js, Tailwind and Storybook)",
+    description:
+      currentLocale === "es"
+        ? `
+    ${secoteamProject}:\n
+Traducí diseños UX y especificaciones de producto en componentes reutilizables y escalables, trabajando proactivamente para facilitar la integración con backend.
+Documenté componentes en Storybook y Confluence, reduciendo el tiempo de implementación de features y permitiendo reutilizar el design system en 2 proyectos adicionales.
+Resolví la adaptación de plantillas de email HTML para clientes de correo legacy, gestionando pruebas iterativas para validación del cliente.
+Actué como nexo entre diseño y desarrollo, asegurando consistencia visual y alineando la implementación con requerimientos del cliente y objetivos de negocio.`
+        : `
+    ${secoteamProject}:\n
+Translated UX designs and product specifications into reusable and scalable components, proactively working to facilitate backend integration.
+Documented components in Storybook and Confluence, reducing the implementation time for features, which allowed the design system to be reused across 2 additional projects.
+Resolved the challenge of adapting HTML email templates for legacy mail clients, managing iterative testing for client validation.
+Acted as the nexus between design and development, ensuring visual consistency and aligning feature implementation with client requirements and business objectives.`,
+    company: "Making Sense LLC",
+    link: ["https://secoconnect.com/"],
+    more: ["Seco TMS"],
+  },
+  {
+    date: currentLocale === "es" ? "Marzo 2025 - presente" : "March 2025 - to present",
+    title: currentLocale === "es" ? "Desarrollador Frontend" : "Frontend Developer",
+    description:
+      currentLocale === "es"
+        ? `
+      Lideré la arquitectura y el desarrollo frontend de una plataforma de e-learning con React y Next.js. Tomé decisiones clave iniciales sobre el stack y la estructura del proyecto.
+      Implementé un sistema de autenticación robusto basado en JWT y NextAuth para gestión segura de sesiones, afinando la solución mediante investigación y recursos externos.
+      Definí flujos de navegación y optimicé la performance de UI con renderizado estático de Next.js, logrando reducir ~0.8s el tiempo promedio de carga de rutas.
+      Conseguí el cliente, lideré demos de producto y establecí principios de estilo y UX en ausencia de diseñador, asegurando una experiencia alineada con la visión del cliente.`
+        : `
+      Led the frontend architecture and development of an e-learning platform using React and Next.js. Made key initial decisions regarding the technology stack and project structure.
+      Implemented a robust authentication system based on JWT and NextAuth for secure session management, refining the solution through research and external resources.
+      Defined navigation flows and optimized UI performance with Next.js static rendering, achieving an average route loading reduction of 0.8s.
+      Acquired the client, led product demonstrations, and established style and UX principles in the absence of a designer, ensuring a user experience aligned with the client's vision.`,
+    company: "Freelance Project",
+    link: "https://.com",
+    more: "TBD",
+  },
+  {
+    date:
+      currentLocale === "es"
+        ? "Febrero 2024 - Abril 2024"
+        : "February 2024 - April 2024",
+    title:
+      currentLocale === "es"
+        ? "TA - Asistente de Enseñanza"
+        : "TA - Teaching Assistant",
+    description:
+      currentLocale === "es"
+        ? "Tareas principales: Coordinar un grupo de estudiantes ingresantes durante toda la experiencia del bootcamp. Guiar a los estudiantes en los primeros pasos del curso y aclarar sus dudas. Brindar asistencia en la resolución de ejercicios y fomentar el trabajo en equipo (Pair Programming). Sugerir ideas para mejorar los procesos del Bootcamp. Promover la colaboración y construir comunidad entre los estudiantes."
+        : "Main tasks: Coordinate a group of new joining students throughout the whole bootcamp experience. Guide students in the first steps of the course and clarify their doubts. Provide assistance in solving exercises and encourage group teamwork (Pair Programming). Suggest ideas to improve the Bootcamp processes. Promote collaboration and build community within the students.",
+    company: "SoyHenry Bootcamp",
+    link: "https://www.soyhenry.com/",
+    more: "SoyHenry",
+  },
+];
+---
+
+<ol class="relative border-s border-gray-200 ml-3.5">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="mb-10 ms-4">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>
