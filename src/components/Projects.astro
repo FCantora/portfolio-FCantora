@@ -146,14 +146,7 @@ The solution offers an intuitive, personalized search experience, streamlining t
       "/projects/Rentscape/rentscapechat.webp",
       "/projects/Rentscape/rentscapeCarrousel.webp",
     ],
-    tags: [
-      TAGS.NEXT,
-      TAGS.TAILWIND,
-      TAGS.TYPESCRIPT,
-      TAGS.AI,
-      TAGS.PINECONE,
-      TAGS.SUPABASE,
-    ],
+    tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.AI, TAGS.PINECONE, TAGS.SUPABASE],
     app: false,
   },
   {
@@ -182,10 +175,7 @@ The solution offers an intuitive, personalized search experience, streamlining t
         : "I developed an app with react native CLI and typescript to view the pictures taken by the Hubble telescope provided by NASA's 'Astronomy Picture of the Day' api.",
     link: "",
     github: "https://github.com/AJoaquinLizarraga/NasaApp.git",
-    image: [
-      "/projects/NasaApp/MainScreens.webp",
-      "/projects/NasaApp/DetailScreens.webp",
-    ],
+    image: ["/projects/NasaApp/MainScreens.webp", "/projects/NasaApp/DetailScreens.webp"],
     tags: [TAGS.TYPESCRIPT, TAGS.REACTNATIVE, TAGS.CSS],
     app: true,
   },
@@ -220,34 +210,24 @@ The solution offers an intuitive, personalized search experience, streamlining t
       "/projects/BocancorpApp/StackScreen.webp",
       "https://www.youtube.com/embed/KRTnl7txiGU?si=Q68xbzdxvZB26Tpz",
     ],
-    tags: [
-      TAGS.JAVASCRIPT,
-      TAGS.TYPESCRIPT,
-      TAGS.REACT,
-      TAGS.NEXT,
-      TAGS.CSS,
-      TAGS.TAILWIND,
-    ],
+    tags: [TAGS.JAVASCRIPT, TAGS.TYPESCRIPT, TAGS.REACT, TAGS.NEXT, TAGS.CSS, TAGS.TAILWIND],
     app: false,
   },
 ];
-
 ---
 
 <section class="flex flex-col gap-y-16">
   {
     PROJECTS.map(({ image, title, description, tags, link, github, app }) => (
       <article>
-        <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
-        <p class="text-lg mb-4 text-pretty">{description}</p>
-        <ul class="flex gap-x-4 gap-y-2 flex-wrap sm:flex-wrap md:flex-row lg:flex-row mb-4">
+        <h3 class="mb-2 text-2xl font-semibold text-yellow-200">{title}</h3>
+        <p class="mb-4 text-pretty text-lg">{description}</p>
+        <ul class="mb-4 flex flex-wrap gap-x-4 gap-y-2 sm:flex-wrap md:flex-row lg:flex-row">
           {tags &&
             tags.map((tag) => {
               return (
                 <li>
-                  <span
-                    class={`flex gap-x-2 rounded-full text-xs ${tag.class}  py-1 px-2`}
-                  >
+                  <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} px-2 py-1`}>
                     <tag.icon class="size-4" />
                     {tag.name}
                   </span>
@@ -256,12 +236,12 @@ The solution offers an intuitive, personalized search experience, streamlining t
             })}
         </ul>
         {typeof image === "string" ? (
-          <div class="flex max-w-2xl  mx-auto">
+          <div class="mx-auto flex max-w-2xl">
             <div class="relative w-full">
-              <div class="overflow-hidden relative h-64 rounded-lg sm:h-80 xl:h-96 2xl:h-[480px] z-20">
+              <div class="relative z-20 h-64 overflow-hidden rounded-lg sm:h-80 xl:h-96 2xl:h-[480px]">
                 <img
                   src={image}
-                  class="relative top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 object-cover"
+                  class="relative left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
                   alt={`Screenshot of ${title}`}
                 />
               </div>
@@ -270,10 +250,10 @@ The solution offers an intuitive, personalized search experience, streamlining t
         ) : (
           <Carrousel images={image} />
         )}
-        <footer class="flex justify-center gap-x-4 mt-2">
+        <footer class="mt-2 flex justify-center gap-x-4">
           {github && (
             <LinkButton link={github}>
-              <GithubIcon class="size-6 mr-1" />
+              <GithubIcon class="mr-1 size-6" />
               {currentLocale === "es" ? "Ver código fuente" : "Watch source code"}
             </LinkButton>
           )}
@@ -281,12 +261,12 @@ The solution offers an intuitive, personalized search experience, streamlining t
             <LinkButton link={link}>
               {app === true ? (
                 <>
-                  <AndroidIcon class="size-6 mr-1" />
+                  <AndroidIcon class="mr-1 size-6" />
                   {currentLocale === "es" ? "Descargar app Android" : "Download Android App"}
                 </>
               ) : (
                 <>
-                  <WebIcon class="size-6 mr-1" />
+                  <WebIcon class="mr-1 size-6" />
                   {currentLocale === "es" ? "Ir al sitio web" : "Go to web site"}
                 </>
               )}

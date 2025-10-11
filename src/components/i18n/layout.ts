@@ -1,19 +1,17 @@
 /** @format */
 
-const languajeList = {
+export const languajeList = {
   es: "Español",
   en: "English",
 };
 
-const layout_content = {
+export const layout_content = {
   es: {
     "layout.title": "Portfolio Fernando Cantora - Desarrollador Frontend",
-    "layout.description":
-      "Contrata a Fernando para desarrollar tus aplicaciones móviles y web.",
+    "layout.description": "Contrata a Fernando para desarrollar tus aplicaciones móviles y web.",
   },
   en: {
     "layout.title": "Portfolio Fernando Cantora - Frontend Developer",
-    "layout.description":
-      "Hire Fernando to develop your mobile and web applications.",
+    "layout.description": "Hire Fernando to develop your mobile and web applications.",
   },
 };

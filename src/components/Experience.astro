@@ -1,18 +1,12 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
 
-const pursuitProject = "Pursuit";
-const rentscapeProject = "Rentscape";
 const secoteamProject = "SeCo Team";
-
 const currentLocale = Astro.currentLocale || "en";
 
 const EXPERIENCE = [
   {
-    date:
-      currentLocale === "es"
-        ? "Marzo 2024 - Septiembre 2025"
-        : "March 2024 - September 2025",
+    date: currentLocale === "es" ? "Marzo 2024 - Septiembre 2025" : "March 2024 - September 2025",
     title:
       currentLocale === "es"
         ? "Desarrollador UX (React, Next.js, Tailwind y Storybook)"
@@ -55,14 +49,8 @@ Acted as the nexus between design and development, ensuring visual consistency a
     more: "TBD",
   },
   {
-    date:
-      currentLocale === "es"
-        ? "Febrero 2024 - Abril 2024"
-        : "February 2024 - April 2024",
-    title:
-      currentLocale === "es"
-        ? "TA - Asistente de Enseñanza"
-        : "TA - Teaching Assistant",
+    date: currentLocale === "es" ? "Febrero 2024 - Abril 2024" : "February 2024 - April 2024",
+    title: currentLocale === "es" ? "TA - Asistente de Enseñanza" : "TA - Teaching Assistant",
     description:
       currentLocale === "es"
         ? "Tareas principales: Coordinar un grupo de estudiantes ingresantes durante toda la experiencia del bootcamp. Guiar a los estudiantes en los primeros pasos del curso y aclarar sus dudas. Brindar asistencia en la resolución de ejercicios y fomentar el trabajo en equipo (Pair Programming). Sugerir ideas para mejorar los procesos del Bootcamp. Promover la colaboración y construir comunidad entre los estudiantes."
@@ -74,7 +62,7 @@ Acted as the nexus between design and development, ensuring visual consistency a
 ];
 ---
 
-<ol class="relative border-s border-gray-200 ml-3.5">
+<ol class="relative ml-3.5 border-s border-gray-200">
   {
     EXPERIENCE.map((experience) => (
       <li class="mb-10 ms-4">

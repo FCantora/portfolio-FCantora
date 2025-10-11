@@ -3,6 +3,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "@fontsource-variable/onest";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { buildLocaleHash } from "../lib/links";
 import { Image } from "astro:assets";
 import esFlag from "../assets/es.png";
 import enFlag from "../assets/en.png";
@@ -52,47 +53,70 @@ const circleFavicon = `data:image/svg+xml;utf8,${encodeURIComponent(svgFavicon)}
       class="fixed inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#7c5bf7_100%)]"
     >
     </div>
-    <div class="relative w-full xl:w-[1120px] xs:w-full mx-auto">
-      <Header
-        currentLocale={currentLocale}
-        getRelativeLocaleUrl={getRelativeLocaleUrl}
-      />
+    <div class="xs:w-full relative mx-auto w-full xl:w-[1120px]">
+      <Header currentLocale={currentLocale} getRelativeLocaleUrl={getRelativeLocaleUrl} />
       <button
         id="menu-btn"
         aria-label="Open menu"
-        class="absolute left-4 top-6 z-50 w-10 h-10 rounded-full overflow-hidden border flex items-center justify-center hover:scale-105 transition shadow-sm border-black/50 bg-white/10 backdrop-blur lg:hidden"
+        class="absolute left-4 top-6 z-50 flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-black/50 bg-white/10 shadow-sm backdrop-blur transition hover:scale-105 lg:hidden"
         type="button"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 opacity-80">
-          <path fill-rule="evenodd" d="M3.75 6.75A.75.75 0 0 1 4.5 6h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Zm0 5.25a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Zm.75 4.5a.75.75 0 0 0 0 1.5h15a.75.75 0 0 0 0-1.5h-15Z" clip-rule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="h-8 w-8 opacity-80"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3.75 6.75A.75.75 0 0 1 4.5 6h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Zm0 5.25a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Zm.75 4.5a.75.75 0 0 0 0 1.5h15a.75.75 0 0 0 0-1.5h-15Z"
+            clip-rule="evenodd"></path>
         </svg>
       </button>
       <nav
         id="mobile-menu"
-        class="absolute left-16 top-6 z-50 flex flex-col gap-2 p-2 rounded-2xl border border-white/15 bg-black/40 backdrop-blur-xl shadow-xl opacity-0 pointer-events-none transition lg:hidden"
+        class="pointer-events-none absolute left-16 top-6 z-50 flex flex-col gap-2 rounded-2xl border border-white/15 bg-black/40 p-2 opacity-0 shadow-xl backdrop-blur-xl transition lg:hidden"
       >
-        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#").replace(/\/$/, "")}>
+        <a
+          class="rounded-full px-3 py-2 transition hover:bg-white/10"
+          href={buildLocaleHash(getRelativeLocaleUrl, currentLocale, "/#")}
+        >
           {currentLocale === "es" ? "Inicio" : "Home"}
         </a>
-        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#experience").replace(/\/$/, "")}>
+        <a
+          class="rounded-full px-3 py-2 transition hover:bg-white/10"
+          href={buildLocaleHash(getRelativeLocaleUrl, currentLocale, "/#experience")}
+        >
           {currentLocale === "es" ? "Experiencia" : "Experience"}
         </a>
-        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#projects").replace(/\/$/, "")}>
+        <a
+          class="rounded-full px-3 py-2 transition hover:bg-white/10"
+          href={buildLocaleHash(getRelativeLocaleUrl, currentLocale, "/#projects")}
+        >
           {currentLocale === "es" ? "Proyectos" : "Projects"}
         </a>
-        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#certifications").replace(/\/$/, "")}>
+        <a
+          class="rounded-full px-3 py-2 transition hover:bg-white/10"
+          href={buildLocaleHash(getRelativeLocaleUrl, currentLocale, "/#certifications")}
+        >
           {currentLocale === "es" ? "Certificaciones" : "Certifications"}
         </a>
-        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#about").replace(/\/$/, "")}>
+        <a
+          class="rounded-full px-3 py-2 transition hover:bg-white/10"
+          href={buildLocaleHash(getRelativeLocaleUrl, currentLocale, "/#about")}
+        >
           {currentLocale === "es" ? "Sobre mí" : "About"}
         </a>
-        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#").replace(/\/$/, "")}>
+        <a
+          class="rounded-full px-3 py-2 transition hover:bg-white/10"
+          href={buildLocaleHash(getRelativeLocaleUrl, currentLocale, "/#")}
+        >
           {currentLocale === "es" ? "Contacto" : "Contact"}
         </a>
       </nav>
       <nav id="lang-switcher" class="absolute right-4 top-6 z-50 flex items-center gap-2">
         <a
-          href={getRelativeLocaleUrl("es", "/#").replace(/\/$/, "")}
+          href={buildLocaleHash(getRelativeLocaleUrl, "es", "/#")}
           aria-label="Cambiar a Español"
           class={`w-8 h-8 rounded-full overflow-hidden border flex items-center justify-center hover:scale-105 transition shadow-sm ${currentLocale === "es" ? "border-yellow-400 ring-1 ring-yellow-900" : "border-black/50"}`}
           data-page-transition
@@ -103,11 +127,11 @@ const circleFavicon = `data:image/svg+xml;utf8,${encodeURIComponent(svgFavicon)}
             alt="Español"
             width={100}
             height={100}
-            class="w-full h-full opacity-40 hover:opacity-100 transition"
+            class="h-full w-full opacity-40 transition hover:opacity-100"
           />
         </a>
         <a
-          href={getRelativeLocaleUrl("en", "/#").replace(/\/$/, "")}
+          href={buildLocaleHash(getRelativeLocaleUrl, "en", "/#")}
           aria-label="Switch to English"
           class={`w-8 h-8 rounded-full overflow-hidden border flex items-center justify-center hover:scale-105 transition shadow-sm ${currentLocale === "en" ? "border-yellow-400 ring-1 ring-yellow-900" : "border-black/50"}`}
           data-page-transition
@@ -118,7 +142,7 @@ const circleFavicon = `data:image/svg+xml;utf8,${encodeURIComponent(svgFavicon)}
             alt="English"
             width={100}
             height={100}
-            class="w-full h-full opacity-40 hover:opacity-100 transition"
+            class="h-full w-full opacity-40 transition hover:opacity-100"
           />
         </a>
       </nav>
@@ -129,7 +153,7 @@ const circleFavicon = `data:image/svg+xml;utf8,${encodeURIComponent(svgFavicon)}
     <button
       id="back-to-top"
       aria-label="Back to top"
-      class="fixed bottom-4 w-10 h-10 flex items-center justify-center right-4 z-50 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 shadow-lg p-3 opacity-0 pointer-events-none transition lg:hidden"
+      class="pointer-events-none fixed bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 p-3 opacity-0 shadow-lg transition hover:bg-white/20 lg:hidden"
       type="button"
     >
       <span class="text-2xl">↑</span>
@@ -139,117 +163,13 @@ const circleFavicon = `data:image/svg+xml;utf8,${encodeURIComponent(svgFavicon)}
       class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 backdrop-blur-sm"
     >
       <div
-        class="w-10 h-10 border-4 border-white/30 border-t-white rounded-full animate-spin"
+        class="h-10 w-10 animate-spin rounded-full border-4 border-white/30 border-t-white"
         aria-label="Loading"
       >
       </div>
     </div>
-    <script>
-      const loader = document.getElementById("page-loader");
-      const headerEl = document.querySelector("header");
-      const langSwitcher = document.getElementById("lang-switcher");
-      const backToTop = document.getElementById("back-to-top");
-      const menuBtn = document.getElementById("menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
-
-      const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
-      let lastScrollY = window.scrollY;
-      function onScroll() {
-        const current = window.scrollY;
-        const scrollingDown = current > lastScrollY;
-        const farFromTop = current > 80;
-        if (isDesktop()) {
-          // Always show header and language switcher on desktop
-          document.body.classList.remove("header-hidden");
-          if (headerEl instanceof HTMLElement) headerEl.classList.remove("is-hidden");
-          if (langSwitcher) {
-            langSwitcher.classList.remove("opacity-0");
-            langSwitcher.classList.remove("pointer-events-none");
-          }
-        } else {
-          document.body.classList.toggle("header-hidden", scrollingDown && farFromTop);
-          if (headerEl instanceof HTMLElement) {
-            headerEl.classList.toggle("is-hidden", scrollingDown && farFromTop);
-          }
-          if (langSwitcher) {
-            langSwitcher.classList.toggle("opacity-0", scrollingDown && farFromTop);
-            langSwitcher.classList.toggle("pointer-events-none", scrollingDown && farFromTop);
-          }
-        }
-        if (mobileMenu) {
-          if (scrollingDown && farFromTop) {
-            mobileMenu.classList.add("opacity-0", "pointer-events-none");
-          }
-        }
-        if (backToTop) {
-          backToTop.classList.toggle("opacity-100", farFromTop);
-          backToTop.classList.toggle("pointer-events-auto", farFromTop);
-          backToTop.classList.toggle("opacity-0", !farFromTop);
-          backToTop.classList.toggle("pointer-events-none", !farFromTop);
-        }
-        lastScrollY = current;
-      }
-      function toggleMenu(forceClose = false) {
-        if (!mobileMenu) return;
-        const closing = forceClose || mobileMenu.classList.contains("pointer-events-auto");
-        mobileMenu.classList.toggle("opacity-0", closing);
-        mobileMenu.classList.toggle("pointer-events-none", closing);
-        mobileMenu.classList.toggle("opacity-100", !closing);
-        mobileMenu.classList.toggle("pointer-events-auto", !closing);
-      }
-      function showLoader() {
-        if (loader) {
-          loader.classList.remove("hidden");
-          loader.classList.add("flex");
-        }
-      }
-      function hideLoader() {
-        if (loader) {
-          loader.classList.add("hidden");
-          loader.classList.remove("flex");
-        }
-      }
-      // Hide on initial paint
-      window.addEventListener("pageshow", hideLoader);
-      window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", onScroll);
-      menuBtn?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        toggleMenu();
-      });
-      document.addEventListener("click", (e) => {
-        if (!mobileMenu) return;
-        if (!mobileMenu.contains(e.target as Node) && (e.target as Node) !== menuBtn) {
-          toggleMenu(true);
-        }
-      });
-      mobileMenu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => toggleMenu(true)));
-      document.getElementById("back-to-top")?.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-      // run once
-      onScroll();
-      // Show on navigation away
-      window.addEventListener("beforeunload", showLoader);
-      // Show when clicking language buttons
-      const langLinks = document.querySelectorAll("a[data-page-transition]");
-      langLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-          const href = link.getAttribute("href");
-          if (!href || href.startsWith("#")) return;
-          e.preventDefault();
-          showLoader();
-          // allow next frame to paint loader, then navigate
-          requestAnimationFrame(() => {
-            window.location.href = href;
-          });
-        });
-      });
-    </script>
-    <Footer
-      currentLocale={currentLocale}
-      getRelativeLocaleUrl={getRelativeLocaleUrl}
-    />
+    <script type="module" src="/src/scripts/header.ts"></script>
+    <Footer currentLocale={currentLocale} getRelativeLocaleUrl={getRelativeLocaleUrl} />
   </body>
 
   <style is:global>

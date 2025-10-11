@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import Card from "./ui/Card.astro";
 interface Props {
   img: ImageMetadata;
   alt: string;
@@ -10,23 +11,23 @@ interface Props {
 const { img, alt, title, description } = Astro.props as Props;
 ---
 
-<article
-  class="rounded-xl overflow-hidden bg-white/5 border border-white/10 shadow-sm transform transition duration-300 hover:scale-[1.03] hover:border-slate-300/40 hover:shadow-lg hover:shadow-slate-200/10 focus-within:ring-2 focus-within:ring-slate-300/40"
+<Card
+  class="transform overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-sm transition duration-300 focus-within:ring-2 focus-within:ring-slate-300/40 hover:scale-[1.03] hover:border-slate-300/40 hover:shadow-lg hover:shadow-slate-200/10"
 >
   <button
     type="button"
-    class="aspect-video bg-black/40 w-full cursor-zoom-in group"
+    class="group aspect-video w-full cursor-zoom-in bg-black/40"
     data-cert-src={img.src}
     aria-label={alt}
   >
     <Image
       src={img}
       alt={alt}
-      class="w-full h-full object-cover transition group-hover:scale-[1.02]"
+      class="h-full w-full object-cover transition group-hover:scale-[1.02]"
     />
   </button>
   <div class="p-4">
-    <h3 class="text-xl font-semibold mb-2">{title}</h3>
-    <p class="text-sm opacity-90 text-pretty">{description}</p>
+    <h3 class="mb-2 text-xl font-semibold">{title}</h3>
+    <p class="text-pretty text-sm opacity-90">{description}</p>
   </div>
-</article>
+</Card>

@@ -26,10 +26,12 @@ const CERTS = [
 ];
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-  {CERTS.map(({ img, alt, title, description }) => (
-    <CertificationCard img={img} alt={alt} title={title} description={description} />
-  ))}
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+  {
+    CERTS.map(({ img, alt, title, description }) => (
+      <CertificationCard img={img} alt={alt} title={title} description={description} />
+    ))
+  }
 </div>
 
 <div
@@ -39,9 +41,7 @@ const CERTS = [
 >
   <img
     id="cert-modal-img"
-    alt={currentLocale === "es"
-      ? "Certificado ampliado"
-      : "Expanded certificate"}
+    alt={currentLocale === "es" ? "Certificado ampliado" : "Expanded certificate"}
     class="max-h-[90vh] max-w-[90vw] rounded-lg shadow-2xl"
   />
 </div>
@@ -71,10 +71,10 @@ const CERTS = [
         modal.classList.add("hidden");
         modal.classList.remove("flex");
         modalImg.src = "";
-        modal.removeEventListener('transitionend', onEnd);
+        modal.removeEventListener("transitionend", onEnd);
         if (lastActive && lastActive instanceof HTMLElement) lastActive.focus();
       };
-      modal.addEventListener('transitionend', onEnd);
+      modal.addEventListener("transitionend", onEnd);
     }
   }
   modal?.addEventListener("click", (e) => {
@@ -83,14 +83,14 @@ const CERTS = [
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
     // basic focus trap: keep focus on modal when open
-    if (e.key === 'Tab' && modal instanceof HTMLElement && !modal.classList.contains('hidden')) {
+    if (e.key === "Tab" && modal instanceof HTMLElement && !modal.classList.contains("hidden")) {
       e.preventDefault();
       modal.focus();
     }
   });
   document.querySelectorAll("[data-cert-src]")?.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const src = (btn instanceof HTMLElement) ? btn.getAttribute("data-cert-src") : null;
+      const src = btn instanceof HTMLElement ? btn.getAttribute("data-cert-src") : null;
       if (src) openModal(src);
     });
   });

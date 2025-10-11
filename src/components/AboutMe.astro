@@ -4,64 +4,63 @@ import { Image } from "astro:assets";
 const currentLocale = Astro.currentLocale || "en";
 ---
 
-<section
-  class="flex flex-col-reverse md:flex-row gap-4 justify-center items-center"
->
-  <div
-    class="[&>p]:mb-4 [&>p>strong]:text-yellow-300 [&>p>strong]:font-semibold text-pretty"
-  >
-    {currentLocale === "es" ? (
-      <>
-        <p>
-          Mi nombre es &lt;Fernando Cantora /&gt;, pero mis amigos me dicen <strong>Fer</strong>.
-          Después de 11 años trabajando como ejecutivo de cuentas en un banco,
-          decidí dar un giro y cambiar de rumbo. <strong>Ahora construyo aplicaciones, y me encanta.</strong>
-        </p>
-        <p>
-          Actualmente estoy desarrollando una plataforma de e-learning para que un estilista pueda
-          enseñar de forma remota, bajo demanda y a mayor escala.
-        </p>
-        <p>
-          Entre mis mayores logros está mi experiencia en el bootcamp de Henry, donde fui elegido como
-          Teaching Assistant. Acompañé y guié a nuevos estudiantes durante su camino intensivo hasta la
-          graduación, logrando un 100% de tasa de éxito. <strong>Orientado a producto y al éxito del cliente.</strong>
-        </p>
-        <p>
-          Me entusiasma colaborar en proyectos desafiantes y aportar a soluciones innovadoras. 🚀
-        </p>
-      </>
-    ) : (
-      <>
-        <p>
-          My name is &lt;Fernando Cantora /&gt;, but my friends call me <strong>Fer</strong>.
-          After 11 years working as a bank's account executive, I decided to make
-          a little twist and switch. <strong>Now, I build applications, and I love it!</strong>
-        </p>
-        <p>
-          Currently, I'm developing an e-learning platform that enables a hairdresser to
-          teach remotely, on-demand, and at a larger scale.
-        </p>
-        <p>
-          Among my proudest achievements is my experience during Henry's bootcamp,
-          where I was elected as a Teaching Assistant. I guided and supported new
-          bootcamp entrants through an intensive path to graduation, achieving a
-          100% success rate. <strong>Product- and customer-success-oriented.</strong>
-        </p>
-        <p>
-          Looking forward to collaborating on exciting projects and contributing to
-          innovative solutions. 🚀
-        </p>
-      </>
-    )}
+<section class="flex flex-col-reverse items-center justify-center gap-4 md:flex-row">
+  <div class="text-pretty [&>p>strong]:font-semibold [&>p>strong]:text-yellow-300 [&>p]:mb-4">
+    {
+      currentLocale === "es" ? (
+        <>
+          <p>
+            Mi nombre es &lt;Fernando Cantora /&gt;, pero mis amigos me dicen <strong>Fer</strong>.
+            Después de 11 años trabajando como ejecutivo de cuentas en un banco, decidí dar un giro
+            y cambiar de rumbo. <strong>Ahora construyo aplicaciones, y me encanta.</strong>
+          </p>
+          <p>
+            Actualmente estoy desarrollando una plataforma de e-learning para que un estilista pueda
+            enseñar de forma remota, bajo demanda y a mayor escala.
+          </p>
+          <p>
+            Entre mis mayores logros está mi experiencia en el bootcamp de Henry, donde fui elegido
+            como Teaching Assistant. Acompañé y guié a nuevos estudiantes durante su camino
+            intensivo hasta la graduación, logrando un 100% de tasa de éxito.{" "}
+            <strong>Orientado a producto y al éxito del cliente.</strong>
+          </p>
+          <p>
+            Me entusiasma colaborar en proyectos desafiantes y aportar a soluciones innovadoras. 🚀
+          </p>
+        </>
+      ) : (
+        <>
+          <p>
+            My name is &lt;Fernando Cantora /&gt;, but my friends call me <strong>Fer</strong>.
+            After 11 years working as a bank's account executive, I decided to make a little twist
+            and switch. <strong>Now, I build applications, and I love it!</strong>
+          </p>
+          <p>
+            Currently, I'm developing an e-learning platform that enables a hairdresser to teach
+            remotely, on-demand, and at a larger scale.
+          </p>
+          <p>
+            Among my proudest achievements is my experience during Henry's bootcamp, where I was
+            elected as a Teaching Assistant. I guided and supported new bootcamp entrants through an
+            intensive path to graduation, achieving a 100% success rate.{" "}
+            <strong>Product- and customer-success-oriented.</strong>
+          </p>
+          <p>
+            Looking forward to collaborating on exciting projects and contributing to innovative
+            solutions. 🚀
+          </p>
+        </>
+      )
+    }
   </div>
-  <div class="md:w-[1700px] w-80 aspect-square hover:scale-125 transition">
+  <div class="aspect-square w-80 transition hover:scale-125 md:w-[1700px]">
     <Image
       src={miImagen}
       alt="Pic of the creator of this site"
       width={3400}
       height={3400}
       quality="high"
-      class="rounded-full w-full h-full"
+      class="h-full w-full rounded-full"
     />
   </div>
 </section>

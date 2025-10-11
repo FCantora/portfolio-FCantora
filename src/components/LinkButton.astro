@@ -1,11 +1,13 @@
 ---
-const { link } = Astro.props
+const { link } = Astro.props;
+import Button from "../components/ui/Button.astro";
 ---
 
-<a
+<Button
   href={link}
   target="_blank"
-  class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-full hover:bg-gray-400 hover:text-blue-700 focus:scale-90 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+  rel="noopener noreferrer"
+  class="mr-2 border-gray-200 bg-white px-2 py-1 text-sm text-gray-900 hover:bg-gray-400 hover:text-blue-700 focus:scale-90 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
 >
   <slot />
-</a>
+</Button>

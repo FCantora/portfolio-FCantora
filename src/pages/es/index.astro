@@ -12,7 +12,6 @@ import GithubIcon from "../../icons/Github.astro";
 import LinkedInIcon from "../../icons/LinkedIn.astro";
 import MailIcon from "../../icons/Mail.astro";
 import CVIcon from "../../icons/CV.astro";
-import Projects from "../../components/Projects.astro";
 import Certifications from "../../components/Certifications.astro";
 import SocialPill from "../../icons/SocialPill.astro";
 import UserIcon from "../../icons/User.astro";
@@ -26,42 +25,42 @@ import miImagen from "../../assets/fcantora-IA.png";
 >
   <main class="px-4">
     <SectionContainer id="/#" class="py-12 pb-32">
-      <div class="flex flex-col md:flex-row items-center gap-x-6 mb-8">
-        <div class="w-72 aspect-square hover:scale-125 transition mb-6 md:mb-0">
+      <div class="mb-8 flex flex-col items-center gap-x-6 md:flex-row">
+        <div class="mb-6 aspect-square w-72 transition hover:scale-125 md:mb-0">
           <Image
             src={miImagen}
             alt="Foto del creador del sitio"
             width={400}
             height={400}
             quality="high"
-            class="rounded-full w-full h-full object-cover object-center"
+            class="h-full w-full rounded-full object-cover object-center"
           />
         </div>
 
-        <div class="flex flex-col gap-4 items-start text-left">
+        <div class="flex flex-col items-start gap-4 text-left">
           <h1
-            class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-2 lg:pb-3"
+            class="flex flex-row gap-x-4 pb-2 text-3xl font-bold text-white md:text-4xl lg:pb-3 lg:text-5xl"
           >
             ¡Hola! <br />Soy Fernando
           </h1>
           <a
-            class="flex justify-center items-center hover:scale-105 my-2 md:mt-0 w-full md:w-fit"
+            class="my-2 flex w-full items-center justify-center hover:scale-105 md:mt-0 md:w-fit"
             href="https://www.linkedin.com/in/fcantora/"
             target="_blank"
             rel="noopener"
           >
             <Badge>Contactar para contratarme</Badge>
           </a>
-          <h2 class="text-xl lg:text-2xl opacity-80 text-wrap max-w-[700px]">
+          <h2 class="max-w-[700px] text-wrap text-xl opacity-80 lg:text-2xl">
             <span class="text-yellow-300">Desarrollador frontend y entusiasta de IA.<br /></span>
             <span
-              class="bg-gradient-to-r from-blue-500 via-white to-blue-500 text-transparent bg-clip-text"
+              class="bg-gradient-to-r from-blue-500 via-white to-blue-500 bg-clip-text text-transparent"
               >Desde Buenos Aires, Argentina.</span
             >
           </h2>
         </div>
       </div>
-      <nav class="flex gap-4 mt-8 flex-wrap">
+      <nav class="mt-8 flex flex-wrap gap-4">
         <SocialPill href="https://www.linkedin.com/in/fcantora">
           <LinkedInIcon class="size-4 md:size-6" />
           LinkedIn
@@ -78,38 +77,35 @@ import miImagen from "../../assets/fcantora-IA.png";
           <MailIcon class="size-4 md:size-6" />
           fer.cantora90@gmail.com
         </SocialPill>
-        <SocialPill
-          href="./assets/CVFernandoCantoraES.pdf"
-          download="Fernando Cantora - es"
-        >
+        <SocialPill href="./assets/CVFernandoCantoraES.pdf" download="Fernando Cantora - es">
           <CVIcon class="size-4 md:size-6" />
           Descargar CV
         </SocialPill>
       </nav>
     </SectionContainer>
     <SectionContainer id="experience">
-      <h2 class="text-3xl font-semibold mb-3 flex gap-x-2 items-center">
+      <h2 class="mb-3 flex items-center gap-x-2 text-3xl font-semibold">
         <Briefcase class="size-8" />
         Experiencia Laboral
       </h2>
       <Experience />
     </SectionContainer>
     <SectionContainer id="projects">
-      <h2 class="text-3xl font-semibold mb-3 flex gap-x-2 items-center">
+      <h2 class="mb-3 flex items-center gap-x-2 text-3xl font-semibold">
         <CodeSandBox class="size-8" />
         Proyectos
       </h2>
       <!-- <Projects /> -->
     </SectionContainer>
     <SectionContainer id="certifications">
-      <h2 class="text-3xl font-semibold mb-3 flex gap-x-2 items-center">
+      <h2 class="mb-3 flex items-center gap-x-2 text-3xl font-semibold">
         <CVIcon class="size-8" />
         Certificaciones
       </h2>
       <Certifications />
     </SectionContainer>
     <SectionContainer id="about">
-      <h2 class="text-3xl font-semibold mb-3 flex gap-x-2 items-center">
+      <h2 class="mb-3 flex items-center gap-x-2 text-3xl font-semibold">
         <UserIcon class="size-8" />
         Sobre mí
       </h2>
