@@ -20,6 +20,18 @@ export default [
   ...tseslint.configs.recommended,
   ...astro.configs.recommended,
   {
+    files: ["public/sw.js"],
+    languageOptions: {
+      globals: {
+        self: "readonly",
+        caches: "readonly",
+        URL: "readonly",
+        fetch: "readonly",
+      },
+    },
+    rules: {},
+  },
+  {
     files: ["**/*.astro"],
     languageOptions: {
       parser: astro.parser,

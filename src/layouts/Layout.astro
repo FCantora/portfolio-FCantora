@@ -36,6 +36,7 @@ const circleFavicon = `data:image/svg+xml;utf8,${encodeURIComponent(svgFavicon)}
     <link rel="icon" type="image/svg+xml" href={circleFavicon} />
     <link rel="icon" type="image/png" href={thumb.src} />
     <link rel="apple-touch-icon" href={thumb.src} />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -169,6 +170,13 @@ const circleFavicon = `data:image/svg+xml;utf8,${encodeURIComponent(svgFavicon)}
       </div>
     </div>
     <script type="module" src="/src/scripts/header.ts"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js");
+        });
+      }
+    </script>
     <Footer currentLocale={currentLocale} getRelativeLocaleUrl={getRelativeLocaleUrl} />
   </body>
 
