@@ -5,12 +5,6 @@ const backToTop = document.getElementById("back-to-top");
 const menuBtn = document.getElementById("menu-btn");
 const mobileMenu = document.getElementById("mobile-menu");
 
-function showLoader() {
-  if (loader) {
-    loader.classList.remove("hidden");
-    loader.classList.add("flex");
-  }
-}
 function hideLoader() {
   if (loader) {
     loader.classList.add("hidden");
