@@ -14,7 +14,6 @@ import MailIcon from "../../icons/Mail.astro";
 import CVIcon from "../../icons/CV.astro";
 import Projects from "../../components/Projects.astro";
 import Certifications from "../../components/Certifications.astro";
-import CVIcon from "../../icons/CV.astro";
 import SocialPill from "../../icons/SocialPill.astro";
 import UserIcon from "../../icons/User.astro";
 import { Image } from "astro:assets";
@@ -28,41 +27,42 @@ import miImagen from "../../assets/fcantora-IA.png";
   <main class="px-4">
     <SectionContainer id="/#" class="py-12 pb-32">
       <div class="flex flex-col md:flex-row items-center gap-x-6 mb-8">
-            
-            <div class="w-72 aspect-square hover:scale-125 transition mb-6 md:mb-0">
-                <Image
-                    src={miImagen}
-                    alt="Pic of the creator of this site"
-                    width={400}
-                    height={400}
-                    quality="high"
-                    class="rounded-full w-full h-full object-cover object-center"
-                />
-            </div>
-            
-            <div class="flex flex-col items-center md:items-start text-center md:text-left">
-                <h1
-                    class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-col md:flex-row gap-x-4 pb-2 lg:pb-3"
-                >
-                    Hey there! <br>I am Fernando
-                </h1>
-                <a
-                    class="flex justify-center items-center hover:scale-105 my-2 md:mt-0"
-                    href="https://www.linkedin.com/in/fcantora/"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    <Badge>Contact to hire</Badge>
-                </a>
-                <h2 class="text-xl lg:text-2xl opacity-80 text-wrap max-w-[700px]">
-                    <span class="text-yellow-300">Frontend developer and AI enthusiast.<br></span>
-                    <span
-                        class="bg-gradient-to-r from-blue-500 via-white to-blue-500 text-transparent bg-clip-text"
-                        >From Buenos Aires, Argentina.</span
-                    >
-                </h2>
-            </div>
+        <div class="w-72 aspect-square hover:scale-125 transition mb-6 md:mb-0">
+          <Image
+            src={miImagen}
+            alt="Pic of the creator of this site"
+            width={400}
+            height={400}
+            quality="high"
+            class="rounded-full w-full h-full object-cover object-center"
+          />
         </div>
+
+        <div class="flex flex-col items-start gap-4 text-left">
+          <h1
+            class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-2 lg:pb-3"
+          >
+            Hey there! <br />I am Fernando
+          </h1>
+          <a
+            class="flex justify-center items-center hover:scale-105 my-2 md:mt-0 w-full md:w-fit"
+            href="https://www.linkedin.com/in/fcantora/"
+            target="_blank"
+            rel="noopener"
+          >
+            <Badge>Contact to hire</Badge>
+          </a>
+          <h2 class="text-xl lg:text-2xl opacity-80 text-wrap max-w-[700px]">
+            <span class="text-yellow-300"
+              >Frontend developer and AI enthusiast.<br /></span
+            >
+            <span
+              class="bg-gradient-to-r from-blue-500 via-white to-blue-500 text-transparent bg-clip-text"
+              >From Buenos Aires, Argentina.</span
+            >
+          </h2>
+        </div>
+      </div>
       <nav class="flex gap-4 mt-8 flex-wrap">
         <SocialPill href="https://www.linkedin.com/in/fcantora">
           <LinkedInIcon class="size-4 md:size-6" />
@@ -81,8 +81,8 @@ import miImagen from "../../assets/fcantora-IA.png";
           fer.cantora90@gmail.com
         </SocialPill>
         <SocialPill
-          href="./assets/CVJoaquinEmanuelLizarraga.pdf"
-          download="Joaquin Emanuel Lizarraga - en"
+          href="./assets/CVFernandoCantoraEN.pdf"
+          download="Fernando Cantora - en"
         >
           <CVIcon class="size-4 md:size-6" />
           Download CV

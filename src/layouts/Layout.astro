@@ -6,12 +6,24 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { Image } from "astro:assets";
 import esFlag from "../assets/es.png";
 import enFlag from "../assets/en.png";
+import thumb from "../assets/thumb.png";
 interface Props {
   title: string;
   description: string;
 }
 const currentLocale = Astro.currentLocale || "en";
 const { description, title } = Astro.props;
+const svgFavicon = `
+  <svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'>
+    <defs>
+      <clipPath id='clip'>
+        <circle cx='32' cy='32' r='30'/>
+      </clipPath>
+    </defs>
+    <rect width='64' height='64' fill='transparent'/>
+    <image href='${thumb.src}' x='0' y='0' width='64' height='64' preserveAspectRatio='xMidYMid slice' clip-path='url(#clip)'/>
+  </svg>`;
+const circleFavicon = `data:image/svg+xml;utf8,${encodeURIComponent(svgFavicon)}`;
 ---
 
 <!doctype html>
@@ -20,7 +32,9 @@ const { description, title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={circleFavicon} />
+    <link rel="icon" type="image/png" href={thumb.src} />
+    <link rel="apple-touch-icon" href={thumb.src} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -38,14 +52,45 @@ const { description, title } = Astro.props;
       class="fixed inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#7c5bf7_100%)]"
     >
     </div>
-    <div class="relative w-full xl:w-[1120px] mx-auto">
+    <div class="relative w-full xl:w-[1120px] xs:w-full mx-auto">
       <Header
         currentLocale={currentLocale}
         getRelativeLocaleUrl={getRelativeLocaleUrl}
       />
-      <nav
-        class="absolute right-4 top-6 z-50 flex items-center gap-2"
+      <button
+        id="menu-btn"
+        aria-label="Open menu"
+        class="absolute left-4 top-6 z-50 w-10 h-10 rounded-full overflow-hidden border flex items-center justify-center hover:scale-105 transition shadow-sm border-black/50 bg-white/10 backdrop-blur lg:hidden"
+        type="button"
       >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 opacity-80">
+          <path fill-rule="evenodd" d="M3.75 6.75A.75.75 0 0 1 4.5 6h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Zm0 5.25a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Zm.75 4.5a.75.75 0 0 0 0 1.5h15a.75.75 0 0 0 0-1.5h-15Z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <nav
+        id="mobile-menu"
+        class="absolute left-16 top-6 z-50 flex flex-col gap-2 p-2 rounded-2xl border border-white/15 bg-black/40 backdrop-blur-xl shadow-xl opacity-0 pointer-events-none transition lg:hidden"
+      >
+        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#").replace(/\/$/, "")}>
+          {currentLocale === "es" ? "Inicio" : "Home"}
+        </a>
+        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#experience").replace(/\/$/, "")}>
+          {currentLocale === "es" ? "Experiencia" : "Experience"}
+        </a>
+        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#projects").replace(/\/$/, "")}>
+          {currentLocale === "es" ? "Proyectos" : "Projects"}
+        </a>
+        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#certifications").replace(/\/$/, "")}>
+          {currentLocale === "es" ? "Certificaciones" : "Certifications"}
+        </a>
+        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#about").replace(/\/$/, "")}>
+          {currentLocale === "es" ? "Sobre mí" : "About"}
+        </a>
+        <a class="hover:bg-white/10 rounded-full px-3 py-2 transition" href={getRelativeLocaleUrl(currentLocale, "/#").replace(/\/$/, "")}>
+          {currentLocale === "es" ? "Contacto" : "Contact"}
+        </a>
+      </nav>
+      <nav id="lang-switcher" class="absolute right-4 top-6 z-50 flex items-center gap-2">
         <a
           href={getRelativeLocaleUrl("es", "/#").replace(/\/$/, "")}
           aria-label="Cambiar a Español"
@@ -79,8 +124,16 @@ const { description, title } = Astro.props;
       </nav>
     </div>
     <!-- Spacer to offset the fixed header height -->
-    <div class="h-24"></div>
+    <div class="md:h-24"></div>
     <slot />
+    <button
+      id="back-to-top"
+      aria-label="Back to top"
+      class="fixed bottom-4 w-10 h-10 flex items-center justify-center right-4 z-50 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 shadow-lg p-3 opacity-0 pointer-events-none transition lg:hidden"
+      type="button"
+    >
+      <span class="text-2xl">↑</span>
+    </button>
     <div
       id="page-loader"
       class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 backdrop-blur-sm"
@@ -93,6 +146,57 @@ const { description, title } = Astro.props;
     </div>
     <script>
       const loader = document.getElementById("page-loader");
+      const headerEl = document.querySelector("header");
+      const langSwitcher = document.getElementById("lang-switcher");
+      const backToTop = document.getElementById("back-to-top");
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
+      let lastScrollY = window.scrollY;
+      function onScroll() {
+        const current = window.scrollY;
+        const scrollingDown = current > lastScrollY;
+        const farFromTop = current > 80;
+        if (isDesktop()) {
+          // Always show header and language switcher on desktop
+          document.body.classList.remove("header-hidden");
+          if (headerEl instanceof HTMLElement) headerEl.classList.remove("is-hidden");
+          if (langSwitcher) {
+            langSwitcher.classList.remove("opacity-0");
+            langSwitcher.classList.remove("pointer-events-none");
+          }
+        } else {
+          document.body.classList.toggle("header-hidden", scrollingDown && farFromTop);
+          if (headerEl instanceof HTMLElement) {
+            headerEl.classList.toggle("is-hidden", scrollingDown && farFromTop);
+          }
+          if (langSwitcher) {
+            langSwitcher.classList.toggle("opacity-0", scrollingDown && farFromTop);
+            langSwitcher.classList.toggle("pointer-events-none", scrollingDown && farFromTop);
+          }
+        }
+        if (mobileMenu) {
+          if (scrollingDown && farFromTop) {
+            mobileMenu.classList.add("opacity-0", "pointer-events-none");
+          }
+        }
+        if (backToTop) {
+          backToTop.classList.toggle("opacity-100", farFromTop);
+          backToTop.classList.toggle("pointer-events-auto", farFromTop);
+          backToTop.classList.toggle("opacity-0", !farFromTop);
+          backToTop.classList.toggle("pointer-events-none", !farFromTop);
+        }
+        lastScrollY = current;
+      }
+      function toggleMenu(forceClose = false) {
+        if (!mobileMenu) return;
+        const closing = forceClose || mobileMenu.classList.contains("pointer-events-auto");
+        mobileMenu.classList.toggle("opacity-0", closing);
+        mobileMenu.classList.toggle("pointer-events-none", closing);
+        mobileMenu.classList.toggle("opacity-100", !closing);
+        mobileMenu.classList.toggle("pointer-events-auto", !closing);
+      }
       function showLoader() {
         if (loader) {
           loader.classList.remove("hidden");
@@ -107,6 +211,24 @@ const { description, title } = Astro.props;
       }
       // Hide on initial paint
       window.addEventListener("pageshow", hideLoader);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      menuBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+      document.addEventListener("click", (e) => {
+        if (!mobileMenu) return;
+        if (!mobileMenu.contains(e.target as Node) && (e.target as Node) !== menuBtn) {
+          toggleMenu(true);
+        }
+      });
+      mobileMenu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => toggleMenu(true)));
+      document.getElementById("back-to-top")?.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      // run once
+      onScroll();
       // Show on navigation away
       window.addEventListener("beforeunload", showLoader);
       // Show when clicking language buttons
@@ -149,6 +271,13 @@ const { description, title } = Astro.props;
       html {
         scroll-behavior: auto;
       }
+    }
+    /* Header hide/show animation */
+    header {
+      transition: transform 200ms ease;
+    }
+    header.is-hidden {
+      transform: translateY(-100%);
     }
   </style>
 </html>
