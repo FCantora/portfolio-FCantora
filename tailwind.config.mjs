@@ -9,5 +9,12 @@ export default {
   theme: {
     extend: {},
   },
+  safelist: [
+    // Toggled by header script
+    "opacity-0",
+    "opacity-100",
+    "pointer-events-none",
+    "pointer-events-auto",
+  ],
   plugins: [],
 };
