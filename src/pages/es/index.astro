@@ -12,6 +12,7 @@ import GithubIcon from "../../icons/Github.astro";
 import LinkedInIcon from "../../icons/LinkedIn.astro";
 import MailIcon from "../../icons/Mail.astro";
 import CVIcon from "../../icons/CV.astro";
+import cvEs from "../../assets/CVFernandoCantoraES.pdf";
 import Certifications from "../../components/Certifications.astro";
 import SocialPill from "../../icons/SocialPill.astro";
 import UserIcon from "../../icons/User.astro";
@@ -77,7 +78,7 @@ import miImagen from "../../assets/fcantora-IA.png";
           <MailIcon class="size-4 md:size-6" />
           fer.cantora90@gmail.com
         </SocialPill>
-        <SocialPill href="./assets/CVFernandoCantoraES.pdf" download="Fernando Cantora - es">
+        <SocialPill href={cvEs} download="Fernando Cantora - es">
           <CVIcon class="size-4 md:size-6" />
           Descargar CV
         </SocialPill>
