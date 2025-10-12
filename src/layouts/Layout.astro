@@ -8,8 +8,7 @@ import { Image } from "astro:assets";
 import esFlag from "../assets/es.png";
 import enFlag from "../assets/en.png";
 import thumb from "../assets/thumb.png";
-import thumbSvg from "../assets/thumb.svg";
-import headerScriptUrl from "../scripts/header.ts?url";
+import thumbSvgUrl from "../assets/thumb.svg?url";
 interface Props {
   title: string;
   description: string;
@@ -24,7 +23,7 @@ const { description, title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href={thumbSvg} />
+    <link rel="icon" type="image/svg+xml" href={thumbSvgUrl} />
     <link rel="icon" type="image/png" href={thumb.src} />
     <link rel="apple-touch-icon" href={thumb.src} />
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -160,7 +159,9 @@ const { description, title } = Astro.props;
       >
       </div>
     </div>
-    <script type="module" src={headerScriptUrl}></script>
+    <script type="module">
+      import "../scripts/header.ts";
+    </script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
