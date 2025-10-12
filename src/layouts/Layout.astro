@@ -8,6 +8,7 @@ import { Image } from "astro:assets";
 import esFlag from "../assets/es.png";
 import enFlag from "../assets/en.png";
 import thumb from "../assets/thumb.png";
+import thumbSvg from "../assets/thumb.svg";
 import headerScriptUrl from "../scripts/header.ts?url";
 interface Props {
   title: string;
@@ -15,17 +16,6 @@ interface Props {
 }
 const currentLocale = Astro.currentLocale || "en";
 const { description, title } = Astro.props;
-const svgFavicon = `
-  <svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'>
-    <defs>
-      <clipPath id='clip'>
-        <circle cx='32' cy='32' r='30'/>
-      </clipPath>
-    </defs>
-    <rect width='64' height='64' fill='transparent'/>
-    <image href='${thumb.src}' x='0' y='0' width='64' height='64' preserveAspectRatio='xMidYMid slice' clip-path='url(#clip)'/>
-  </svg>`;
-const circleFavicon = `data:image/svg+xml;utf8,${encodeURIComponent(svgFavicon)}`;
 ---
 
 <!doctype html>
@@ -34,7 +24,7 @@ const circleFavicon = `data:image/svg+xml;utf8,${encodeURIComponent(svgFavicon)}
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href={circleFavicon} />
+    <link rel="icon" type="image/svg+xml" href={thumbSvg} />
     <link rel="icon" type="image/png" href={thumb.src} />
     <link rel="apple-touch-icon" href={thumb.src} />
     <link rel="manifest" href="/manifest.webmanifest" />
