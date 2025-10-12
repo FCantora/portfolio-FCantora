@@ -8,6 +8,7 @@ import { Image } from "astro:assets";
 import esFlag from "../assets/es.png";
 import enFlag from "../assets/en.png";
 import thumb from "../assets/thumb.png";
+import headerScript from "../scripts/header.ts";
 interface Props {
   title: string;
   description: string;
@@ -169,7 +170,7 @@ const circleFavicon = `data:image/svg+xml;utf8,${encodeURIComponent(svgFavicon)}
       >
       </div>
     </div>
-    <script type="module" src="/src/scripts/header.ts"></script>
+    <script type="module" src={headerScript}></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
