@@ -1,4 +1,4 @@
-const CACHE_NAME = "fcantora-portfolio-v1";
+const CACHE_NAME = "fcantora-portfolio-v2";
 const CORE_URLS = ["/", "/es/", "/en/", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
@@ -42,7 +42,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Assets: cache-first for speed
+  // Assets: stale-while-revalidate to avoid stale JS/CSS
   if (
     req.destination === "style" ||
     req.destination === "script" ||
@@ -50,15 +50,14 @@ self.addEventListener("fetch", (event) => {
     req.destination === "font"
   ) {
     event.respondWith(
-      caches.match(req).then(
-        (cached) =>
-          cached ||
-          fetch(req).then((res) => {
-            const copy = res.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
-            return res;
-          })
-      )
+      caches.open(CACHE_NAME).then(async (cache) => {
+        const cached = await cache.match(req);
+        const networkPromise = fetch(req).then((res) => {
+          cache.put(req, res.clone());
+          return res;
+        });
+        return cached || networkPromise;
+      })
     );
   }
 });
