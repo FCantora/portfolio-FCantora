@@ -1,4 +1,5 @@
 const loader = document.getElementById("page-loader");
+console.debug("[header] script loaded");
 const headerEl = document.querySelector("header");
 const langSwitcher = document.getElementById("lang-switcher");
 const backToTop = document.getElementById("back-to-top");
@@ -52,10 +53,12 @@ function onScroll() {
 window.addEventListener("pageshow", hideLoader);
 window.addEventListener("scroll", onScroll, { passive: true });
 window.addEventListener("resize", onScroll);
+window.addEventListener("load", onScroll);
 
 menuBtn?.addEventListener("click", (e) => {
   e.stopPropagation();
   if (!mobileMenu) return;
+  console.debug("[header] menu-btn click");
   const closing = mobileMenu.classList.contains("pointer-events-auto");
   mobileMenu.classList.toggle("opacity-0", closing);
   mobileMenu.classList.toggle("pointer-events-none", closing);
@@ -79,6 +82,7 @@ mobileMenu?.querySelectorAll("a").forEach((a) =>
 );
 
 document.getElementById("back-to-top")?.addEventListener("click", () => {
+  console.debug("[header] back-to-top click");
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 

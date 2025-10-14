@@ -9,6 +9,7 @@ import esFlag from "../assets/es.png";
 import enFlag from "../assets/en.png";
 import thumb from "../assets/thumb.png";
 import thumbSvgUrl from "../assets/thumb.svg?url";
+import headerScriptUrl from "../scripts/header.ts?url";
 interface Props {
   title: string;
   description: string;
@@ -159,9 +160,7 @@ const { description, title } = Astro.props;
       >
       </div>
     </div>
-    <script type="module">
-      import "../scripts/header.ts";
-    </script>
+    <script type="module" src={headerScriptUrl}></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {

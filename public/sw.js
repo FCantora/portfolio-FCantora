@@ -1,4 +1,4 @@
-const CACHE_NAME = "fcantora-portfolio-v2";
+const CACHE_NAME = "fcantora-portfolio-v3";
 const CORE_URLS = ["/", "/es/", "/en/", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
@@ -42,13 +42,22 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Assets: stale-while-revalidate to avoid stale JS/CSS
-  if (
-    req.destination === "style" ||
-    req.destination === "script" ||
-    req.destination === "image" ||
-    req.destination === "font"
-  ) {
+  // Scripts: network-first to avoid stale client code
+  if (req.destination === "script") {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+          return res;
+        })
+        .catch(() => caches.match(req))
+    );
+    return;
+  }
+
+  // Styles/Images/Fonts: stale-while-revalidate for performance
+  if (req.destination === "style" || req.destination === "image" || req.destination === "font") {
     event.respondWith(
       caches.open(CACHE_NAME).then(async (cache) => {
         const cached = await cache.match(req);
@@ -59,5 +68,12 @@ self.addEventListener("fetch", (event) => {
         return cached || networkPromise;
       })
     );
+  }
+});
+
+// Allow the page to tell SW to activate immediately
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
   }
 });
