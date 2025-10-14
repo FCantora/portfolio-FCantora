@@ -162,6 +162,47 @@ const { description, title } = Astro.props;
     </div>
     <script type="module" src={headerScriptUrl}></script>
     <script>
+      (function () {
+        const btn = document.getElementById("menu-btn");
+        const menu = document.getElementById("mobile-menu");
+        const back = document.getElementById("back-to-top");
+        function onScroll() {
+          const far = window.scrollY > 80;
+          if (back) {
+            back.classList.toggle("opacity-100", far);
+            back.classList.toggle("pointer-events-auto", far);
+            back.classList.toggle("opacity-0", !far);
+            back.classList.toggle("pointer-events-none", !far);
+          }
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("load", onScroll);
+        if (btn) {
+          btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            if (!menu) return;
+            const open = menu.classList.contains("pointer-events-auto");
+            menu.classList.toggle("opacity-0", open);
+            menu.classList.toggle("pointer-events-none", open);
+            menu.classList.toggle("opacity-100", !open);
+            menu.classList.toggle("pointer-events-auto", !open);
+          });
+        }
+        document.addEventListener("click", function (e) {
+          if (!menu) return;
+          if (!menu.contains(e.target) && e.target !== btn) {
+            menu.classList.add("opacity-0", "pointer-events-none");
+            menu.classList.remove("opacity-100", "pointer-events-auto");
+          }
+        });
+        if (back) {
+          back.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
+      })();
+    </script>
+    <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker.register("/sw.js");
