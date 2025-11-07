@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+// import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 const { images } = Astro.props;
 // const newImages = images.push(youtube)
@@ -14,14 +14,14 @@ const { images } = Astro.props;
       <!-- Item 1 -->
 
       {
-        images?.map((item: string | ImageMetadata) => {
+        images?.map((item: ImageMetadata | string, index: number) => {
           if (typeof item === "object") {
             return (
               <div class="hidden ease-in-out" data-carousel-item>
-                <Image
-                  src={item}
+                <img
+                  src={item.src}
                   class="relative left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-                  alt={`Carousel image ${item.src}`}
+                  alt={item.src}
                 />
               </div>
             );
@@ -35,6 +35,16 @@ const { images } = Astro.props;
                   src={`${item}?amp&rel=0&mute=1`}
                   allowfullscreen
                   class="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-black object-cover"
+                />
+              </div>
+            );
+          } else if (item.startsWith("/")) {
+            return (
+              <div class="hidden ease-in-out" data-carousel-item>
+                <img
+                  src={item}
+                  class="relative left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
+                  alt={`Carousel image ${index + 1}`}
                 />
               </div>
             );
