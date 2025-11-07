@@ -1,4 +1,5 @@
 ---
+import type { ImageMetadata } from "astro";
 const { images } = Astro.props;
 // const newImages = images.push(youtube)
 ---
@@ -8,20 +9,20 @@ const { images } = Astro.props;
     <div id="default-carousel" class="relative w-full" data-carousel="static">
       <!-- Carousel wrapper -->
       <div
-        class="relative z-20 h-80 w-full overflow-hidden rounded-lg sm:h-96 min-[800px]:h-[480px] lg:h-[440px] 2xl:h-[530px]"
+        class="relative z-20 h-80 w-full overflow-hidden rounded-lg sm:h-96 min-[800px]:h-[480px] lg:h-[440px] 2xl:h-[550px]"
       >
         <!-- Item 1 -->
 
         {
-          images?.map((item: string, index: number) => {
-            if (item.startsWith("/")) {
+          images?.map((item: string | ImageMetadata) => {
+            if (typeof item === "object") {
               return (
                 <div class="hidden ease-in-out" data-carousel-item>
                   <img
-                    id={item}
-                    src={images[index]}
+                    id={item.src}
+                    src={item.src}
                     class="relative left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-                    alt={item}
+                    alt={`Carousel image ${item.src}`}
                   />
                 </div>
               );
@@ -32,7 +33,7 @@ const { images } = Astro.props;
                     title={`Youtube Video`}
                     width="560"
                     height="315"
-                    src={`${images[index]}?amp&rel=0&mute=1`}
+                    src={`${item}?amp&rel=0&mute=1`}
                     allowfullscreen
                     class="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-black object-cover"
                   />

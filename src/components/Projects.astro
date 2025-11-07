@@ -8,6 +8,14 @@ import Storybook from "../icons/Storybook.astro";
 import TypescriptIcon from "../icons/Typescript.astro";
 import LinkButton from "./LinkButton.astro";
 import Carrousel from "./Carrousel.astro";
+import SecoLogin from "../assets/projects/Seco/SecoLogin.png";
+import SecoTable from "../assets/projects/Seco/SecoTable.png";
+import SecoDetail from "../assets/projects/Seco/SecoDetail.png";
+import SecoDrawer from "../assets/projects/Seco/SecoDrawer.png";
+import SecoResponsiveTable from "../assets/projects/Seco/SecoResponsiveTable.png";
+import SecoResponsiveDetail from "../assets/projects/Seco/SecoResponsiveDetail.png";
+import SecoResponsiveDrawer from "../assets/projects/Seco/SecoResponsiveDrawer.png";
+import type { ImageMetadata } from "astro";
 
 const currentLocale = Astro.currentLocale || "en";
 
@@ -50,7 +58,7 @@ interface ProjectCardProps {
   description?: string;
   link?: string;
   github?: string;
-  image: string | string[];
+  image: string | (ImageMetadata | string)[];
   tags?: Tag[];
   app: boolean;
 }
@@ -99,13 +107,13 @@ const PROJECTS: ProjectCardProps[] = [
     link: "https://library-fcantora.vercel.app/",
     github: "https://github.com/FCantora/library",
     image: [
-      "/projects/Seco/SecoLogin.png",
-      "/projects/Seco/SecoTable.png",
-      "/projects/Seco/SecoDetail.png",
-      "/projects/Seco/SecoDrawer.png",
-      "/projects/Seco/SecoResponsiveTable.png",
-      "/projects/Seco/SecoResponsiveDetail.png",
-      "/projects/Seco/SecoResponsiveDrawer.png",
+      SecoLogin,
+      SecoTable,
+      SecoDetail,
+      SecoDrawer,
+      SecoResponsiveTable,
+      SecoResponsiveDetail,
+      SecoResponsiveDrawer,
     ],
     tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.REACT, TAGS.HTML],
     app: false,
