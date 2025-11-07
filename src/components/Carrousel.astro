@@ -40,7 +40,7 @@ const { images } = Astro.props;
             );
           } else if (item.startsWith("/")) {
             return (
-              <div class="hidden ease-in-out" data-carousel-item>
+              <div class="h-full w-full ease-in-out" data-carousel-item>
                 <img
                   src={item}
                   class="relative left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
