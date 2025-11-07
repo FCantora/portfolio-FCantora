@@ -17,7 +17,7 @@ const { images } = Astro.props;
         images?.map((item: ImageMetadata | string, index: number) => {
           if (typeof item === "object") {
             return (
-              <div class="hidden ease-in-out" data-carousel-item>
+              <div class="h-full w-full ease-in-out" data-carousel-item>
                 <img
                   src={item.src}
                   class="relative left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
@@ -27,7 +27,7 @@ const { images } = Astro.props;
             );
           } else if (item.startsWith("https")) {
             return (
-              <div class="hidden ease-in-out" data-carousel-item>
+              <div class="h-full w-full ease-in-out" data-carousel-item>
                 <iframe
                   title={`Youtube Video`}
                   width="560"
