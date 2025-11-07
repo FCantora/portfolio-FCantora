@@ -1,8 +1,5 @@
 ---
-// import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
 const { images } = Astro.props;
-// const newImages = images.push(youtube)
 ---
 
 <div class="my-10 w-[calc(100%+2rem)] -translate-x-4 lg:w-[calc(100%+8rem)] lg:-translate-x-16">
@@ -14,18 +11,8 @@ const { images } = Astro.props;
       <!-- Item 1 -->
 
       {
-        images?.map((item: ImageMetadata | string, index: number) => {
-          if (typeof item === "object") {
-            return (
-              <div class="hidden h-full w-full ease-in-out" data-carousel-item>
-                <img
-                  src={item.src}
-                  class="relative left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-                  alt={item.src}
-                />
-              </div>
-            );
-          } else if (item.startsWith("https")) {
+        images?.map((item: string, index: number) => {
+          if (item.startsWith("https")) {
             return (
               <div class="hidden h-full w-full ease-in-out" data-carousel-item>
                 <iframe
@@ -42,9 +29,10 @@ const { images } = Astro.props;
             return (
               <div class="hidden h-full w-full ease-in-out" data-carousel-item>
                 <img
-                  src={item}
+                id={item}
+                  src={images[index]}
                   class="relative left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-                  alt={`Carousel image ${index + 1}`}
+                  alt={item}
                 />
               </div>
             );
