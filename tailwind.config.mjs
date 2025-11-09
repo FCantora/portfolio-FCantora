@@ -2,9 +2,13 @@
  * @format
  * @type {import('tailwindcss').Config}
  */
+import flowbitePlugin from "flowbite/plugin";
 
 export default {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  content: [
+    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
+    "./node_modules/flowbite/**/*.js",
+  ],
   darkMode: "class",
   theme: {
     extend: {},
@@ -16,5 +20,5 @@ export default {
     "pointer-events-none",
     "pointer-events-auto",
   ],
-  plugins: [],
+  plugins: [flowbitePlugin],
 };

@@ -105,5 +105,56 @@ const { images } = Astro.props;
     </button>
   </div>
 
-  <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+  <script>
+    import type { CarouselInterface, CarouselItem, CarouselOptions } from "flowbite";
+    import { Carousel } from "flowbite";
+
+    const carouselElement = document.getElementById("default-carousel");
+
+    if (carouselElement) {
+      // create an array of objects with the carousel items and their options
+      const items: CarouselItem[] = Array.from(
+        carouselElement.querySelectorAll("[data-carousel-item]")
+      ).map((el) => ({
+        position: parseInt(el.getAttribute("data-carousel-item") || "0"),
+        el: el as HTMLElement,
+      }));
+
+      const options: CarouselOptions = {
+        defaultPosition: 1,
+        interval: 3000,
+
+        // callback functions
+        onNext: () => {
+          console.log("next slider item is shown");
+        },
+        onPrev: () => {
+          console.log("previous slider item is shown");
+        },
+        onChange: () => {
+          console.log("new slider item has been shown");
+        },
+      };
+
+      const carousel: CarouselInterface = new Carousel(carouselElement, items, options);
+
+      carousel.cycle();
+
+      // set event listeners for prev and next buttons
+      const prevButton = carouselElement.querySelector("[data-carousel-prev]");
+      const nextButton = carouselElement.querySelector("[data-carousel-next]");
+
+      if (prevButton) {
+        prevButton.addEventListener("click", () => {
+          carousel.prev();
+        });
+      }
+
+      if (nextButton) {
+        nextButton.addEventListener("click", () => {
+          carousel.next();
+        });
+      }
+    }
+  </script>
 </div>
