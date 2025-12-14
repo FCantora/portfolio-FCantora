@@ -5,7 +5,13 @@ import HTMLIcon from "../icons/HTML.astro";
 import TailwindCSSIcon from "../icons/TailwindCSS.astro";
 import ReactIcon from "../icons/React.astro";
 import Storybook from "../icons/Storybook.astro";
+import WebIcon from "../icons/Web.astro";
 import TypescriptIcon from "../icons/Typescript.astro";
+import NodejsIcon from "../icons/Nodejs.astro";
+import ExpressIcon from "../icons/Express.astro";
+import PostgreSQLIcon from "../icons/PostgreSQL.astro";
+import PrismaIcon from "../icons/Prisma.astro";
+import ViteIcon from "../icons/Vite.astro";
 import LinkButton from "./LinkButton.astro";
 import Carrousel from "./Carrousel.astro";
 import type { ImageMetadata } from "astro";
@@ -38,6 +44,31 @@ const TAGS = {
     class: "bg-[#003159] text-white",
     icon: HTMLIcon,
   },
+  NODEJS: {
+    name: "Node.js",
+    class: "bg-[#003159] text-white",
+    icon: NodejsIcon,
+  },
+  EXPRESS: {
+    name: "Express",
+    class: "bg-[#003159] text-white",
+    icon: ExpressIcon,
+  },
+  POSTGRESQL: {
+    name: "PostgreSQL",
+    class: "bg-[#003159] text-white",
+    icon: PostgreSQLIcon,
+  },
+  PRISMA: {
+    name: "Prisma ORM",
+    class: "bg-[#003159] text-white",
+    icon: PrismaIcon,
+  },
+  VITE: {
+    name: "Vite",
+    class: "bg-[#003159] text-white",
+    icon: ViteIcon,
+  },
 };
 
 interface Tag {
@@ -57,6 +88,30 @@ interface ProjectCardProps {
 }
 
 const PROJECTS: ProjectCardProps[] = [
+  {
+    title: "Notes App - Full Stack Challenge",
+    description:
+      currentLocale === "es"
+        ? `Aplicación full-stack de gestión de notas con categorización construida en respuesta a un desafío técnico en 3 días con ayuda de agentes de IA. Implementé arquitectura en capas (Controllers → Services → Repositories), gestión de estado con Context API, optimistic UI updates, y sistema many-to-many entre notas y categorías. Diseño responsive mobile-first con tema dark/light automático, accesibilidad WCAG, y deploy multi-plataforma (Railway + Netlify + Neon PostgreSQL).`
+        : `Full-stack note management application with categorization built in response to a technical challenge in 3 days with AI agent assistance. I implemented layered architecture (Controllers → Services → Repositories), state management with Context API, optimistic UI updates, and many-to-many system between notes and categories. Mobile-first responsive design with automatic dark/light theme, WCAG accessibility, and multi-platform deployment (Railway + Netlify + Neon PostgreSQL).`,
+    link: "https://notesappfe.netlify.app/",
+    image: [
+      "/projects/NotesApp/NotesMainDark.png",
+      "/projects/NotesApp/NotesMainLight.png",
+      "/projects/NotesApp/NotesResponsiveDark.png",
+      "/projects/NotesApp/NotesResponsiveLight.png",
+    ],
+    tags: [
+      TAGS.TYPESCRIPT,
+      TAGS.REACT,
+      TAGS.NODEJS,
+      TAGS.EXPRESS,
+      TAGS.POSTGRESQL,
+      TAGS.PRISMA,
+      TAGS.TAILWIND,
+    ],
+    app: false,
+  },
   {
     title: "SeCo TMS",
     description:
@@ -151,10 +206,15 @@ launch, validating the solution as a scalable business model.`,
                   <LinkButton class="mr-1 size-6" />
                   {currentLocale === "es" ? "Descargar app Android" : "Download Android App"}
                 </>
-              ) : (
+              ) : github ? (
                 <>
                   <Storybook class="mr-1 size-6" />
                   {currentLocale === "es" ? "Ir a la librería" : "Go to library"}
+                </>
+              ) : (
+                <>
+                  <WebIcon class="mr-1 size-6" />
+                  {currentLocale === "es" ? "Ir a la web" : "Go to web"}
                 </>
               )}
             </LinkButton>

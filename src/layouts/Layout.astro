@@ -30,6 +30,37 @@ const { description, title } = Astro.props;
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={Astro.url.href} />
+
+    <!-- Author and Keywords -->
+    <meta name="author" content="Fernando Cantora" />
+    <meta
+      name="keywords"
+      content="Fernando Cantora, desarrollador frontend, frontend developer, React, Astro, portfolio, Buenos Aires, Argentina, AI enthusiast"
+    />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL("/og-image.png", Astro.url).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={currentLocale === "es" ? "es_AR" : "en_US"} />
+    <meta property="og:site_name" content="Fernando Cantora - Portfolio" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={Astro.url.href} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL("/og-image.png", Astro.url).href} />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#7c5bf7" />
   </head>
   <body>
     <!-- <div
