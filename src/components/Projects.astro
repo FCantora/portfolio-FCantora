@@ -89,30 +89,6 @@ interface ProjectCardProps {
 
 const PROJECTS: ProjectCardProps[] = [
   {
-    title: "Notes App - Full Stack Challenge",
-    description:
-      currentLocale === "es"
-        ? `Aplicación full-stack de gestión de notas con categorización construida en respuesta a un desafío técnico en 3 días con ayuda de agentes de IA. Implementé arquitectura en capas (Controllers → Services → Repositories), gestión de estado con Context API, optimistic UI updates, y sistema many-to-many entre notas y categorías. Diseño responsive mobile-first con tema dark/light automático, accesibilidad WCAG, y deploy multi-plataforma (Railway + Netlify + Neon PostgreSQL).`
-        : `Full-stack note management application with categorization built in response to a technical challenge in 3 days with AI agent assistance. I implemented layered architecture (Controllers → Services → Repositories), state management with Context API, optimistic UI updates, and many-to-many system between notes and categories. Mobile-first responsive design with automatic dark/light theme, WCAG accessibility, and multi-platform deployment (Railway + Netlify + Neon PostgreSQL).`,
-    link: "https://notesappfe.netlify.app/",
-    image: [
-      "/projects/NotesApp/NotesMainDark.png",
-      "/projects/NotesApp/NotesMainLight.png",
-      "/projects/NotesApp/NotesResponsiveDark.png",
-      "/projects/NotesApp/NotesResponsiveLight.png",
-    ],
-    tags: [
-      TAGS.TYPESCRIPT,
-      TAGS.REACT,
-      TAGS.NODEJS,
-      TAGS.EXPRESS,
-      TAGS.POSTGRESQL,
-      TAGS.PRISMA,
-      TAGS.TAILWIND,
-    ],
-    app: false,
-  },
-  {
     title: "SeCo TMS",
     description:
       currentLocale === "es"
@@ -153,6 +129,30 @@ launch, validating the solution as a scalable business model.`,
       "/projects/JohnMojica/JohnMenu.png",
     ],
     tags: [TAGS.TYPESCRIPT, TAGS.NEXT, TAGS.HTML, TAGS.TAILWIND, TAGS.REACT],
+    app: false,
+  },
+  {
+    title: "Notes App - Full Stack Challenge",
+    description:
+      currentLocale === "es"
+        ? `Aplicación full-stack de gestión de notas con categorización construida en respuesta a un desafío técnico en 3 días con ayuda de agentes de IA. Implementé arquitectura en capas (Controllers → Services → Repositories), gestión de estado con Context API, optimistic UI updates, y sistema many-to-many entre notas y categorías. Diseño responsive mobile-first con tema dark/light automático, accesibilidad WCAG, y deploy multi-plataforma (Railway + Netlify + Neon PostgreSQL).`
+        : `Full-stack note management application with categorization built in response to a technical challenge in 3 days with AI agent assistance. I implemented layered architecture (Controllers → Services → Repositories), state management with Context API, optimistic UI updates, and many-to-many system between notes and categories. Mobile-first responsive design with automatic dark/light theme, WCAG accessibility, and multi-platform deployment (Railway + Netlify + Neon PostgreSQL).`,
+    link: "https://notesappfe.netlify.app/",
+    image: [
+      "/projects/NotesApp/NotesMainDark.png",
+      "/projects/NotesApp/NotesMainLight.png",
+      "/projects/NotesApp/NotesResponsiveDark.png",
+      "/projects/NotesApp/NotesResponsiveLight.png",
+    ],
+    tags: [
+      TAGS.TYPESCRIPT,
+      TAGS.REACT,
+      TAGS.NODEJS,
+      TAGS.EXPRESS,
+      TAGS.POSTGRESQL,
+      TAGS.PRISMA,
+      TAGS.TAILWIND,
+    ],
     app: false,
   },
 ];
