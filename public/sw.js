@@ -1,4 +1,4 @@
-const CACHE_NAME = "fcantora-portfolio-v3";
+const CACHE_NAME = "fcantora-portfolio-v5";
 const CORE_URLS = ["/", "/es/", "/en/", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {

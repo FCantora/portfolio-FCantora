@@ -113,7 +113,7 @@ npx vercel --prod
 
 - LinkedIn: https://www.linkedin.com/in/fcantora
 - GitHub: https://github.com/FCantora
-- Email: fer.cantora90@gmail.com
+- Email: fcantora90@gmail.com
 
 ## Licencia
 

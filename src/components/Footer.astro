@@ -7,13 +7,14 @@ const { currentLocale, getRelativeLocaleUrl } = Astro.props;
   class="m-4 mx-auto mb-8 w-full rounded-lg shadow backdrop-blur-lg dark:bg-black/20 xl:w-[1120px]"
 >
   <div class="mx-auto w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-    <span class="text-sm text-yellow-200/80 sm:text-center"
-      >© {currentYear}
+    <span class="text-sm text-yellow-200/80 sm:text-center">
+      © {currentYear}
       <a
-        href="https://github.com/FCantora/porfolio-FCantora.git"
+        href="https://github.com/FCantora/portfolio-FCantora"
         target="_blank"
-        class="hover:underline">FCantora™</a
-      > - {currentLocale === "es" ? "Disponible en Github." : "Available on Github."}
+        rel="noopener noreferrer"
+        class="hover:underline">FCantora</a
+      > - {currentLocale === "es" ? "Disponible en GitHub." : "Available on GitHub."}
     </span>
     <ul class="mt-3 flex flex-wrap items-center text-sm font-medium text-white/90 sm:mt-0">
       <li>
@@ -23,8 +24,11 @@ const { currentLocale, getRelativeLocaleUrl } = Astro.props;
         >
       </li>
       <li>
-        <a href={getRelativeLocaleUrl(currentLocale, "/#")} class="hover:underline"
-          >{currentLocale === "es" ? "Contacto" : "Contact"}</a
+        <a
+          href="https://calendly.com/fercantora/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:underline">{currentLocale === "es" ? "Contacto" : "Contact"}</a
         >
       </li>
     </ul>

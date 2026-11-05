@@ -7,6 +7,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://fcantora-portfolio.vercel.app",
   integrations: [react(), tailwind()],
 
   i18n: {

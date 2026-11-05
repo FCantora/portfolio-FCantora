@@ -1,71 +1,165 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
 
-const secoteamProject = "SeCo Team";
 const currentLocale = Astro.currentLocale || "en";
 
 const EXPERIENCE = [
   {
-    date: currentLocale === "es" ? "Marzo 2024 - Septiembre 2025" : "March 2024 - September 2025",
-    title:
+    date:
       currentLocale === "es"
-        ? "Desarrollador UX (React, Next.js, Tailwind y Storybook)"
-        : "UX Developer (React, Next.js, Tailwind and Storybook)",
-    description:
+        ? "Enero 2026 - Octubre 2026 · Freelance (Remoto)"
+        : "January 2026 - October 2026 · Freelance (Remote)",
+    title: "Technical Product Manager & Fullstack Developer",
+    company: "J.M. Miranda Propiedades",
+    summary:
       currentLocale === "es"
-        ? `
-    ${secoteamProject}:\n
-Traduje diseños UX y especificaciones de producto en componentes reutilizables y escalables, trabajando proactivamente para facilitar la integración con backend.
-Documenté componentes en Storybook y Confluence, reduciendo el tiempo de implementación de features y permitiendo reutilizar el design system en 2 proyectos adicionales.
-Resolví la adaptación de plantillas de email HTML para clientes de correo legacy, gestionando pruebas iterativas para validación del cliente.
-Actué como nexo entre diseño y desarrollo, asegurando consistencia visual y alineando la implementación con requerimientos del cliente y objetivos de negocio.`
-        : `
-    ${secoteamProject}:\n
-Translated UX designs and product specifications into reusable and scalable components, proactively working to facilitate backend integration.
-Documented components in Storybook and Confluence, reducing the implementation time for features, which allowed the design system to be reused across 2 additional projects.
-Resolved the challenge of adapting HTML email templates for legacy mail clients, managing iterative testing for client validation.
-Acted as the nexus between design and development, ensuring visual consistency and aligning feature implementation with client requirements and business objectives.`,
+        ? "Liderazgo de punta a punta del ciclo de vida del producto, desde el discovery y mapeo de procesos hasta el lanzamiento a producción y onboarding del equipo."
+        : "End-to-end ownership of the product lifecycle, from stakeholder discovery and process mapping to production launch and team onboarding.",
+    bullets:
+      currentLocale === "es"
+        ? [
+            "Lideré el discovery y la entrega del producto de punta a punta con el dueño y el equipo de la agencia (en vivo en jmmiranda.com.ar); audité el sistema legacy en PHP para eliminar cuellos de botella operativos y brechas de seguridad, elevando el rendimiento en Lighthouse de 70% a 100%.",
+            "Mapeé procesos As-Is/To-Be para ingreso de propiedades, publicación y gestión de leads; definí el alcance del MVP, estimaciones de esfuerzo y el roadmap en 4 épicas, traduciendo reglas de negocio y permisos por rol en historias de usuario, criterios de aceptación y modelo de datos en PostgreSQL/Supabase.",
+            "Aceleré la alineación con stakeholders mediante herramientas asistidas por IA (Cursor, v0) para convertir requerimientos en prototipos navegables en cuestión de horas, validando el alcance en persona antes de comprometer desarrollo.",
+            "Gestioné los pases a staging y lideré el User Acceptance Testing (UAT) con el equipo del cliente, realizando el triage de 15 casos reportados entre defectos y desvíos de alcance; encabecé el rediseño UX del flujo de carga de propiedades reduciendo el tiempo de ingreso de 9 a 4 minutos.",
+            "Construí y mantuve la Wiki interna (ADRs, reglas de negocio, flujos operativos) y entregué guías paso a paso en Scribe tras cada demo, logrando adopción autónoma en 5 usuarios no técnicos del back-office.",
+          ]
+        : [
+            "Led end-to-end product discovery and delivery with the agency's owner and staff (live at jmmiranda.com.ar); audited the legacy PHP system to eliminate operational bottlenecks and security gaps, raising the Lighthouse performance score from 70% to 100%.",
+            "Mapped As-Is/To-Be processes for property intake, publication, and lead handling; defined MVP scope, effort estimates, and product roadmap across 4 epics, translating business rules and role-based permissions into structured user stories, acceptance criteria, and a PostgreSQL/Supabase data model.",
+            "Accelerated stakeholder alignment by leveraging AI-assisted tooling (Cursor, v0) to turn requirements into navigable prototypes within hours, validating scope in person with the client before committing engineering effort.",
+            "Managed staging releases and led User Acceptance Testing (UAT) with the client's team, triaging 15 reported cases into defects vs. scope gaps; spearheaded a UX redesign of the property intake workflow that cut entry time from 9 to 4 minutes.",
+            "Built and maintained the project's internal Wiki (ADRs, business rules, operational workflows) and delivered step-by-step Scribe walkthroughs after each demo, driving seamless adoption across 5 non-technical back-office users.",
+          ],
+    link: "https://www.jmmiranda.com.ar",
+    more: "J.M. Miranda Propiedades",
+  },
+  {
+    date:
+      currentLocale === "es"
+        ? "Febrero 2026 - Septiembre 2026 · Remoto"
+        : "February 2026 - September 2026 · Remote",
+    title: "Web Developer (Product & Agile Delivery)",
+    company: "Flywheel Studio",
+    summary:
+      currentLocale === "es"
+        ? "Entrega de soluciones multiplataforma de logística y herramientas internas de gestión con integración de IA."
+        : "Full delivery lifecycle of multi-platform logistics solutions and AI-integrated internal project management tools.",
+    bullets:
+      currentLocale === "es"
+        ? [
+            "Colaboré en todo el ciclo de vida de entrega de una solución logística multiplataforma (portal administrativo web en Next.js/Supabase + app móvil junto a un equipo Flutter) para un cliente de marketplace que opera lockers de terceros.",
+            "Proporcioné estimaciones de esfuerzo técnico, refiné requerimientos con criterios de aceptación y participé activamente en ceremonias Scrum, sprint planning y revisiones de Pull Requests en un equipo Agile de 4 personas.",
+            "Integré modelos de IA a través del Vercel AI SDK (incluyendo el bot 'Somara' en Discord) para automatizar flujos de trabajo operativos dentro de una aplicación web interna de gestión de proyectos.",
+          ]
+        : [
+            "Collaborated across the full delivery lifecycle of a multi-platform logistics solution (web admin portal in Next.js/Supabase + mobile app alongside a Flutter team) for a marketplace client operating third-party managed lockers.",
+            "Provided technical effort estimates, refined requirements with acceptance criteria, and actively participated in Scrum ceremonies, sprint planning, and Pull Request reviews within an Agile team of 4.",
+            "Integrated AI models via the Vercel AI SDK (including 'Somara', a custom Discord AI bot) to automate operational workflows within an internal project management web application.",
+          ],
+  },
+  {
+    date:
+      currentLocale === "es"
+        ? "Febrero 2026 - Marzo 2026 · Freelance (Remoto)"
+        : "February 2026 - March 2026 · Freelance (Remote)",
+    title: "Web Developer & Technical Scoping",
+    company: "Outland (Duva Contracting)",
+    bullets:
+      currentLocale === "es"
+        ? [
+            "Coordiné y ejecuté la migración técnica del sitio corporativo (duvacontracting.com) de WordPress a React con tiempo de inactividad mínimo, mejorando el rendimiento y la experiencia de usuario.",
+            "Definí el alcance e implementé Sanity CMS como solución headless para que los equipos no técnicos del cliente gestionaran contenido de forma autónoma, liderando revisiones de sprint y demos en vivo con stakeholders.",
+          ]
+        : [
+            "Coordinated and executed the technical migration of a corporate website (duvacontracting.com) from WordPress to React with minimal downtime, improving performance and UX.",
+            "Scoped and implemented Sanity CMS as a headless solution to empower non-technical client teams with autonomous content management, leading sprint progress reviews and live product demos with stakeholders.",
+          ],
+    link: "https://duvacontracting.com",
+    more: "Duva Contracting",
+  },
+  {
+    date:
+      currentLocale === "es"
+        ? "Marzo 2025 - Febrero 2026 · Freelance (Remoto)"
+        : "March 2025 - February 2026 · Freelance (Remote)",
+    title: "Product & Frontend Developer",
+    company: "Método John Mojica",
+    bullets:
+      currentLocale === "es"
+        ? [
+            "Relevé requerimientos del cliente, definí flujos de UX y lideré demos de producto para una plataforma de e-learning B2B, iterando sobre funcionalidades basándome en el feedback directo de stakeholders y usuarios finales.",
+            "Coordiné contratos de API y esquemas de respuesta con el equipo backend en Java mientras lideraba la arquitectura frontend en React/Next.js, reduciendo los tiempos de carga en 0.8s en las rutas principales.",
+          ]
+        : [
+            "Gathered client requirements, defined UX workflows, and led product demos for a B2B e-learning platform, iterating on features based on direct stakeholder and end-user feedback.",
+            "Coordinated API contracts and response schemas with the Java backend team while leading React/Next.js frontend architecture, cutting page load times by 0.8s across core routes.",
+          ],
+  },
+  {
+    date:
+      currentLocale === "es"
+        ? "Marzo 2024 - Septiembre 2025 · Argentina"
+        : "March 2024 - September 2025 · Argentina",
+    title: "UX Developer",
     company: "Making Sense LLC",
-    link: ["https://secoconnect.com/", "https://library-f-cantora.vercel.app/"],
-    more: ["Seco TMS", "Storybook"],
+    bullets:
+      currentLocale === "es"
+        ? [
+            "Actué como enlace clave entre diseñadores UX, ingenieros backend y stakeholders para asegurar que los entregables cumplieran con las reglas de negocio, especificaciones funcionales y estándares visuales.",
+            "Documenté componentes de forma funcional y técnica en Storybook y Confluence, reduciendo los tiempos de implementación y permitiendo la reutilización del sistema de diseño en 2 proyectos adicionales.",
+            "Gestioné ciclos iterativos de pruebas funcionales para validar incrementos complejos de producto directamente con el cliente antes de su lanzamiento.",
+          ]
+        : [
+            "Acted as a key liaison across UX designers, backend engineers, and stakeholders to ensure deliverables matched business rules, functional specs, and visual standards.",
+            "Documented components functionally and technically in Storybook and Confluence, reducing implementation overhead and enabling design system reuse across 2 additional projects.",
+            "Managed iterative functional testing cycles to validate complex product increments directly with the client prior to release.",
+          ],
+    link: ["https://secoconnect.com/", "https://library-fcantora.vercel.app/"],
+    more: ["SeCo TMS", "Storybook"],
   },
   {
-    date: currentLocale === "es" ? "Marzo 2025 - presente" : "March 2025 - to present",
-    title: currentLocale === "es" ? "Desarrollador Frontend" : "Frontend Developer",
-    description:
+    date:
       currentLocale === "es"
-        ? `
-      Lideré la arquitectura y el desarrollo frontend de una plataforma de e-learning con React y Next.js. Tomé decisiones clave iniciales sobre el stack y la estructura del proyecto.
-      Implementé un sistema de autenticación robusto basado en JWT y NextAuth para gestión segura de sesiones, afinando la solución mediante investigación y recursos externos.
-      Definí flujos de navegación y optimicé la performance de UI con renderizado estático de Next.js, logrando reducir ~0.8s el tiempo promedio de carga de rutas.
-      Conseguí el cliente, lideré demos de producto y establecí principios de estilo y UX en ausencia de diseñador, asegurando una experiencia alineada con la visión del cliente.`
-        : `
-      Led the frontend architecture and development of an e-learning platform using React and Next.js. Made key initial decisions regarding the technology stack and project structure.
-      Implemented a robust authentication system based on JWT and NextAuth for secure session management, refining the solution through research and external resources.
-      Defined navigation flows and optimized UI performance with Next.js static rendering, achieving an average route loading reduction of 0.8s.
-      Acquired the client, led product demonstrations, and established style and UX principles in the absence of a designer, ensuring a user experience aligned with the client's vision.`,
-    company: "Freelance Project",
-    link: "https://.com",
-    more: "TBD",
-  },
-  {
-    date: currentLocale === "es" ? "Febrero 2024 - Abril 2024" : "February 2024 - April 2024",
-    title: currentLocale === "es" ? "TA - Asistente de Enseñanza" : "TA - Teaching Assistant",
-    description:
-      currentLocale === "es"
-        ? "Tareas principales: Coordinar un grupo de estudiantes ingresantes durante toda la experiencia del bootcamp. Guiar a los estudiantes en los primeros pasos del curso y aclarar sus dudas. Brindar asistencia en la resolución de ejercicios y fomentar el trabajo en equipo (Pair Programming). Sugerir ideas para mejorar los procesos del Bootcamp. Promover la colaboración y construir comunidad entre los estudiantes."
-        : "Main tasks: Coordinate a group of new joining students throughout the whole bootcamp experience. Guide students in the first steps of the course and clarify their doubts. Provide assistance in solving exercises and encourage group teamwork (Pair Programming). Suggest ideas to improve the Bootcamp processes. Promote collaboration and build community within the students.",
+        ? "Febrero 2024 - Mayo 2024 · Part-time (Remoto)"
+        : "February 2024 - May 2024 · Part-time (Remote)",
+    title: "Teaching Assistant",
     company: "SoyHenry Bootcamp",
+    bullets:
+      currentLocale === "es"
+        ? [
+            "Coordiné, fui mentor y realicé el seguimiento del progreso técnico de más de 40 estudiantes en desarrollo fullstack, facilitando dailies, talleres y sesiones técnicas simuladas.",
+          ]
+        : [
+            "Coordinated, mentored, and tracked the technical progress of 40+ students in fullstack development, facilitating daily standups, workshops, and technical mock sessions.",
+          ],
     link: "https://www.soyhenry.com/",
     more: "SoyHenry",
+  },
+  {
+    date: "2012 - 2023 · Buenos Aires, Argentina",
+    title: "Commercial Account Executive",
+    company: "Banco Credicoop Coop. Ltdo.",
+    bullets:
+      currentLocale === "es"
+        ? [
+            "Lideré relaciones B2B end-to-end durante 11 años, relevando necesidades comerciales complejas de dueños de empresas y directores C-level para entregar soluciones financieras a medida.",
+            "Resolví conflictos de prioridades entre clientes, operaciones internas y cumplimiento de riesgos, negociando alcances, plazos y expectativas directamente con los tomadores de decisiones ejecutivas.",
+            "Analicé flujos de trabajo operativos y estructuras financieras en carteras corporativas, traduciendo conceptos técnicos y financieros complejos en planes claros y accionables para los stakeholders.",
+          ]
+        : [
+            "Owned end-to-end B2B client relationships for 11 years, eliciting complex business needs from company owners and C-level directors to deliver tailored financial solutions.",
+            "Resolved conflicting priorities across clients, internal operations, and risk compliance, negotiating scope, timelines, and expectations directly with executive decision-makers.",
+            "Analyzed operational workflows and financial structures across corporate portfolios, translating complex technical and financial concepts into clear, actionable plans for stakeholders.",
+          ],
   },
 ];
 ---
 
-<ol class="relative ml-3.5 border-s border-gray-200">
+<ol class="relative ml-3.5 border-s border-gray-200/40">
   {
     EXPERIENCE.map((experience) => (
-      <li class="mb-10 ms-4">
+      <li class="mb-12 ms-6">
         <ExperienceItem {...experience} />
       </li>
     ))

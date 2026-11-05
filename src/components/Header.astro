@@ -8,30 +8,30 @@ const L = (hash: string) => buildLocaleHash(getRelativeLocaleUrl, currentLocale,
   class="fixed top-0 z-40 mx-auto flex w-full items-center justify-center px-4 py-6 pr-16 sm:px-6 sm:pr-20 md:px-8 xl:w-[1120px]"
 >
   <nav
-    class={`hidden lg:flex 
-      border border-black
-      rounded-full px-3 py-2
-      flex-row items-center
-      bg-gray-200/10 dark:bg-black/50  backdrop-blur-2xl
-      `}
+    aria-label={currentLocale === "es" ? "Navegación principal" : "Primary navigation"}
+    class="hidden flex-row items-center rounded-full border border-white/15 bg-black/50 px-3 py-2 backdrop-blur-2xl lg:flex"
   >
-    <a class="rounded-full px-3 transition hover:bg-white/10" href={L("/#")}>
+    <a class="rounded-full px-3 py-1 transition hover:bg-white/10" href={L("/#top")}>
       {currentLocale === "es" ? "Inicio" : "Home"}
     </a>
-    <a class="rounded-full px-3 transition hover:bg-white/10" href={L("/#experience")}>
-      {currentLocale === "es" ? "Experiencia" : "Experience"}
-    </a>
-
-    <a class="rounded-full px-3 transition hover:bg-white/10" href={L("/#projects")}>
+    <a class="rounded-full px-3 py-1 transition hover:bg-white/10" href={L("/#projects")}>
       {currentLocale === "es" ? "Proyectos" : "Projects"}
     </a>
-    <a class="rounded-full px-3 transition hover:bg-white/10" href={L("/#certifications")}>
-      {currentLocale === "es" ? "Certificaciones" : "Certifications"}
+    <a class="rounded-full px-3 py-1 transition hover:bg-white/10" href={L("/#experience")}>
+      {currentLocale === "es" ? "Experiencia" : "Experience"}
     </a>
-    <a class="rounded-full px-3 transition hover:bg-white/10" href={L("/#about")}>
+    <a class="rounded-full px-3 py-1 transition hover:bg-white/10" href={L("/#about")}>
       {currentLocale === "es" ? "Sobre mí" : "About"}
     </a>
-    <a class="rounded-full px-3 transition hover:bg-white/10" href={L("/#")}>
+    <a class="rounded-full px-3 py-1 transition hover:bg-white/10" href={L("/#certifications")}>
+      {currentLocale === "es" ? "Certificaciones" : "Certifications"}
+    </a>
+    <a
+      class="rounded-full px-3 py-1 transition hover:bg-white/10"
+      href="https://calendly.com/fercantora/30min"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {currentLocale === "es" ? "Contacto" : "Contact"}
     </a>
   </nav>

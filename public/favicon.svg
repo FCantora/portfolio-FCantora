@@ -1,9 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
-    <path d="M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z" />
-    <style>
-        path { fill: #000; }
-        @media (prefers-color-scheme: dark) {
-            path { fill: #FFF; }
-        }
-    </style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0f1d" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+    <linearGradient id="accent" x1="20" y1="24" x2="108" y2="104" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)" />
+  <rect x="3" y="3" width="122" height="122" rx="25" stroke="#3b82f6" stroke-opacity="0.45" stroke-width="2" />
+  <!-- F -->
+  <path
+    d="M28 36H64V47H40V59H60V70H40V92H28V36Z"
+    fill="#ffffff"
+  />
+  <!-- C -->
+  <path
+    d="M93.5 49.5C90.2 46.2 85.8 44.5 80.5 44.5C70.3 44.5 63 52.1 63 64C63 75.9 70.3 83.5 80.5 83.5C85.8 83.5 90.2 81.8 93.5 78.5L101.5 86.5C96.2 91.8 89 94.5 80.5 94.5C63.4 94.5 51 82.1 51 64C51 45.9 63.4 33.5 80.5 33.5C89 33.5 96.2 36.2 101.5 41.5L93.5 49.5Z"
+    fill="url(#accent)"
+  />
 </svg>

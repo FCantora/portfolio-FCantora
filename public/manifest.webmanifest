@@ -1,12 +1,25 @@
 {
-  "name": "Portfolio Fernando Cantora",
+  "name": "Fernando Cantora | Technical Product Manager & Solutions Lead",
   "short_name": "FCantora",
+  "description": "Portfolio de Fernando Cantora — Technical Project / Product Manager & Solutions Lead.",
+  "lang": "es-AR",
   "start_url": "/es/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#0a0a0a",
+  "background_color": "#0a0f1d",
+  "theme_color": "#1e3a8a",
   "icons": [
-    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
   ]
 }

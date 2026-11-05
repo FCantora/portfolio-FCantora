@@ -17,21 +17,21 @@ import Certifications from "../../components/Certifications.astro";
 import SocialPill from "../../icons/SocialPill.astro";
 import UserIcon from "../../icons/User.astro";
 import { Image } from "astro:assets";
-import miImagen from "../../assets/fcantora-IA.png";
+import miImagen from "../../assets/fcantora.jpg";
 import Projects from "../../components/Projects.astro";
 ---
 
 <Layout
-  title="Portfolio Fernando Cantora - Frontend Developer"
-  description="Frontend developer specialized in React, Next.js, and UX development. Building modern, scalable, and accessible web applications. Available for freelance projects."
+  title="Fernando Cantora | Technical Product Manager & Solutions Lead"
+  description="Technical Product Manager & Solutions Lead. Combining stakeholder discovery, product requirements leadership, and software architecture to deliver end-to-end digital business solutions."
 >
   <main class="px-4">
-    <SectionContainer id="/#" class="py-12 pb-32">
+    <SectionContainer id="top" class="py-12 pb-32">
       <div class="mb-8 flex flex-col items-center gap-x-6 md:flex-row">
         <div class="mb-6 aspect-square w-72 transition hover:scale-125 md:mb-0">
           <Image
             src={miImagen}
-            alt="Pic of the creator of this site"
+            alt="Fernando Cantora"
             width={400}
             height={400}
             quality="high"
@@ -49,49 +49,46 @@ import Projects from "../../components/Projects.astro";
             class="my-2 flex w-full items-center justify-center hover:scale-105 md:mt-0 md:w-fit"
             href="https://www.linkedin.com/in/fcantora/"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
-            <Badge>Contact to hire</Badge>
+            <Badge>Contact me!</Badge>
           </a>
           <h2 class="max-w-[700px] text-wrap text-xl opacity-80 lg:text-2xl">
-            <span class="text-yellow-300">Frontend developer and AI enthusiast.<br /></span>
+            <span class="block font-semibold text-yellow-300">
+              Technical Project / Product Manager &amp; Solutions Lead
+            </span>
             <span
-              class="bg-gradient-to-r from-blue-500 via-white to-blue-500 bg-clip-text text-transparent"
-              >From Buenos Aires, Argentina.</span
+              class="mt-1 block bg-gradient-to-r from-blue-500 via-white to-blue-500 bg-clip-text text-transparent"
             >
+              Buenos Aires, Argentina · C1 Advanced English · Intermediate Portuguese
+            </span>
           </h2>
         </div>
       </div>
-      <nav class="mt-8 flex flex-wrap gap-4">
+      <nav class="mt-8 flex flex-wrap gap-4" aria-label="Contact links">
         <SocialPill href="https://www.linkedin.com/in/fcantora">
           <LinkedInIcon class="size-4 md:size-6" />
           LinkedIn
-        </SocialPill>
-        <SocialPill href="https://github.com/FCantora">
-          <GithubIcon class="size-4 md:size-6" />
-          Github
         </SocialPill>
         <SocialPill href="https://calendly.com/fercantora/30min">
           <CalendlyIcon class="size-4 md:size-6" />
           Calendly
         </SocialPill>
-        <SocialPill href="mailto:fer.cantora90@gmail.com">
+        <SocialPill href="mailto:fcantora90@gmail.com">
           <MailIcon class="size-4 md:size-6" />
-          fer.cantora90@gmail.com
+          fcantora90@gmail.com
         </SocialPill>
-        <SocialPill href={cvEn} download="Fernando Cantora - en">
+        <SocialPill href="https://github.com/FCantora">
+          <GithubIcon class="size-4 md:size-6" />
+          GitHub
+        </SocialPill>
+        <SocialPill href={cvEn} download="Fernando Cantora - CV EN.pdf">
           <CVIcon class="size-4 md:size-6" />
           Download CV
         </SocialPill>
       </nav>
     </SectionContainer>
-    <SectionContainer id="experience">
-      <h2 class="mb-3 flex items-center gap-x-2 text-3xl font-semibold">
-        <Briefcase class="size-8" />
-        Work Experience
-      </h2>
-      <Experience />
-    </SectionContainer>
+
     <SectionContainer id="projects">
       <h2 class="mb-3 flex items-center gap-x-2 text-3xl font-semibold">
         <CodeSandBox class="size-8" />
@@ -99,19 +96,29 @@ import Projects from "../../components/Projects.astro";
       </h2>
       <Projects />
     </SectionContainer>
-    <SectionContainer id="certifications">
+
+    <SectionContainer id="experience">
       <h2 class="mb-3 flex items-center gap-x-2 text-3xl font-semibold">
-        <CVIcon class="size-8" />
-        Certifications
+        <Briefcase class="size-8" />
+        Work Experience
       </h2>
-      <Certifications />
+      <Experience />
     </SectionContainer>
+
     <SectionContainer id="about">
       <h2 class="mb-3 flex items-center gap-x-2 text-3xl font-semibold">
         <UserIcon class="size-8" />
         About Me
       </h2>
       <AboutMe />
+    </SectionContainer>
+
+    <SectionContainer id="certifications">
+      <h2 class="mb-3 flex items-center gap-x-2 text-3xl font-semibold">
+        <CVIcon class="size-8" />
+        Certifications
+      </h2>
+      <Certifications />
     </SectionContainer>
   </main>
 </Layout>

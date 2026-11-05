@@ -1,4 +1,31 @@
+# Search Engine & AI Discovery Governance (RFC 9309)
 User-agent: *
 Allow: /
 
-Sitemap: /sitemap.xml
+# Major Search Engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI Search & Answer Engines (AEO / GEO citations)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://fcantora-portfolio.vercel.app/sitemap.xml

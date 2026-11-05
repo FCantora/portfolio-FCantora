@@ -1,28 +1,64 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
+
+import AstroIcon from "../icons/AstroIcon.astro";
+import BrevoIcon from "../icons/Brevo.astro";
 import GithubIcon from "../icons/Github.astro";
-import NextjsIcon from "../icons/Nextjs.astro";
 import HTMLIcon from "../icons/HTML.astro";
-import TailwindCSSIcon from "../icons/TailwindCSS.astro";
+import NextjsIcon from "../icons/Nextjs.astro";
+import PostgreSQLIcon from "../icons/PostgreSQL.astro";
 import ReactIcon from "../icons/React.astro";
 import Storybook from "../icons/Storybook.astro";
-import WebIcon from "../icons/Web.astro";
+import SupabaseIcon from "../icons/Supabase.astro";
+import TailwindCSSIcon from "../icons/TailwindCSS.astro";
 import TypescriptIcon from "../icons/Typescript.astro";
-import NodejsIcon from "../icons/Nodejs.astro";
-import ExpressIcon from "../icons/Express.astro";
-import PostgreSQLIcon from "../icons/PostgreSQL.astro";
-import PrismaIcon from "../icons/Prisma.astro";
-import ViteIcon from "../icons/Vite.astro";
-import LinkButton from "./LinkButton.astro";
+import WebIcon from "../icons/Web.astro";
 import Carrousel from "./Carrousel.astro";
+import LinkButton from "./LinkButton.astro";
 import type { ImageMetadata } from "astro";
+import type { ComponentType } from "react";
 
 const currentLocale = Astro.currentLocale || "en";
+
+function getProjectImages(folderName: string, preferredOrder: string[] = []): string[] {
+  try {
+    const dirPath = path.join(process.cwd(), "public", "projects", folderName);
+    if (!fs.existsSync(dirPath)) return preferredOrder;
+    const discovered = fs
+      .readdirSync(dirPath)
+      .filter((file) => /\.(png|jpe?g|webp|avif|gif)$/i.test(file))
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+      .map((file) => `/projects/${folderName}/${file}`);
+    if (discovered.length === 0) return preferredOrder;
+    if (preferredOrder.length === 0) return discovered;
+    const extras = discovered.filter((img) => !preferredOrder.includes(img));
+    return [...preferredOrder, ...extras];
+  } catch {
+    return preferredOrder;
+  }
+}
 
 const TAGS = {
   NEXT: {
     name: "Next.js",
     class: "bg-[#003159] text-white",
     icon: NextjsIcon,
+  },
+  ASTRO: {
+    name: "Astro",
+    class: "bg-[#003159] text-white",
+    icon: AstroIcon,
+  },
+  SUPABASE: {
+    name: "Supabase",
+    class: "bg-[#003159] text-white",
+    icon: SupabaseIcon,
+  },
+  BREVO: {
+    name: "Brevo",
+    class: "bg-[#003159] text-white",
+    icon: BrevoIcon,
   },
   TAILWIND: {
     name: "TailwindCSS",
@@ -39,64 +75,77 @@ const TAGS = {
     class: "bg-[#003159] text-white",
     icon: TypescriptIcon,
   },
-  HTML: {
-    name: "HTML5",
-    class: "bg-[#003159] text-white",
-    icon: HTMLIcon,
-  },
-  NODEJS: {
-    name: "Node.js",
-    class: "bg-[#003159] text-white",
-    icon: NodejsIcon,
-  },
-  EXPRESS: {
-    name: "Express",
-    class: "bg-[#003159] text-white",
-    icon: ExpressIcon,
-  },
   POSTGRESQL: {
     name: "PostgreSQL",
     class: "bg-[#003159] text-white",
     icon: PostgreSQLIcon,
   },
-  PRISMA: {
-    name: "Prisma ORM",
+  STORYBOOK: {
+    name: "Storybook",
     class: "bg-[#003159] text-white",
-    icon: PrismaIcon,
+    icon: Storybook,
   },
-  VITE: {
-    name: "Vite",
+  HTML: {
+    name: "HTML5",
     class: "bg-[#003159] text-white",
-    icon: ViteIcon,
+    icon: HTMLIcon,
   },
 };
 
 interface Tag {
   name: string;
   class: string;
-  icon: typeof NextjsIcon | typeof TailwindCSSIcon;
+  icon: ComponentType<{ class?: string }>;
 }
 
 interface ProjectCardProps {
   title: string;
-  description?: string;
+  description: string;
   link?: string;
   github?: string;
-  image: string | (ImageMetadata | string)[];
+  image: (ImageMetadata | string)[];
+  folderHint?: string;
   tags?: Tag[];
-  app: boolean;
 }
 
 const PROJECTS: ProjectCardProps[] = [
   {
+    title: "J.M. Miranda Propiedades",
+    description:
+      currentLocale === "es"
+        ? "Lideré de punta a punta el discovery y la entrega de la plataforma digital (portal público + panel de administración a medida) para una inmobiliaria tradicional de La Plata, reemplazando un sistema legacy en PHP y elevando el puntaje en Lighthouse de 70% a 100%. Relevé procesos junto al dueño y el equipo, definí el alcance del MVP en 4 épicas con modelo de datos en PostgreSQL/Supabase, validé prototipos rápidos con IA en persona y conduje las pruebas de aceptación (UAT), rediseñando el flujo de carga de propiedades para reducir el tiempo de ingreso de 9 a 4 minutos."
+        : "Led end-to-end product discovery and delivery of the digital platform (public portal + custom admin dashboard) for an established real estate agency in La Plata, replacing a legacy PHP system and raising Lighthouse performance from 70% to 100%. Mapped workflows with the owner and staff, scoped the MVP across 4 epics backed by a PostgreSQL/Supabase data model, validated rapid AI prototypes in person, and led User Acceptance Testing (UAT), redesigning the property intake flow to cut entry time from 9 to 4 minutes.",
+    link: "https://www.jmmiranda.com.ar",
+    image: getProjectImages("JMMiranda", [
+      "/projects/JMMiranda/JMMirandaHome.jpg",
+      "/projects/JMMiranda/JMMirandaAdmin.jpg",
+    ]),
+    folderHint: "public/projects/JMMiranda/",
+    tags: [TAGS.NEXT, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.SUPABASE, TAGS.POSTGRESQL, TAGS.TAILWIND],
+  },
+  {
+    title: "Nenasas",
+    description:
+      currentLocale === "es"
+        ? "Web comercial y de marketing construida en Astro para un canal de streaming en vivo, enfocada en la conversión de suscriptores (planes recurrentes y aportes únicos) y en la captura de emails integrada con Brevo para gestión de audiencias, automatización de mailing y campañas de marketing."
+        : "Marketing and conversion web platform built with Astro for a live-streaming channel, focused on subscriber acquisition (recurring membership tiers and one-time contributions) and email capture integrated with Brevo for audience management, automated mailing, and marketing campaigns.",
+    link: "https://www.nenasas.com.ar",
+    image: getProjectImages("Nenasas", [
+      "/projects/Nenasas/NenasasHome.jpg",
+      "/projects/Nenasas/NenasasPlans.jpg",
+    ]),
+    folderHint: "public/projects/Nenasas/",
+    tags: [TAGS.ASTRO, TAGS.BREVO, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.HTML],
+  },
+  {
     title: "SeCo TMS",
     description:
       currentLocale === "es"
-        ? `Plataforma web desarrollada con React.js, Next.js y TailwindCSS, diseñada para la gestión integral de operaciones logísticas y transporte. Se migró de un programa en AS400 a una aplicación web moderna y escalable para asignación, control y monitoreo de envíos de mercadería entre diferentes clientes y transportistas. Grupo de desarrollo colaborativo de 15 personas utilizando metodologías ágiles (Scrum).`
-        : `Web platform developed with React.js, Next.js, and TailwindCSS, designed for comprehensive management of logistics and transportation operations. Migrated from an AS400 program to a modern and scalable web application for assignment, control, and monitoring of merchandise shipments between different clients and carriers. Collaborative development group of 15 people under agile methodologies (Scrum).`,
+        ? "Plataforma web desarrollada para la gestión integral de operaciones logísticas y transporte en EE.UU., migrando desde un sistema heredado en AS400 a una aplicación moderna y escalable. Actué como enlace entre diseño UX, ingeniería backend y stakeholders dentro de un equipo colaborativo bajo Scrum, liderando el desarrollo y la documentación del sistema de diseño en Storybook y Confluence."
+        : "Web platform built for end-to-end logistics and transportation operations in the US, migrating from a legacy AS400 system to a modern, scalable application. Served as the liaison across UX design, backend engineering, and stakeholders within an Agile Scrum team, leading the development and documentation of the design system in Storybook and Confluence.",
     link: "https://library-fcantora.vercel.app/",
     github: "https://github.com/FCantora/library",
-    image: [
+    image: getProjectImages("Seco", [
       "/projects/Seco/SecoLogin.png",
       "/projects/Seco/SecoTable.png",
       "/projects/Seco/SecoDetail.png",
@@ -104,94 +153,44 @@ const PROJECTS: ProjectCardProps[] = [
       "/projects/Seco/SecoResponsiveTable.png",
       "/projects/Seco/SecoResponsiveDetail.png",
       "/projects/Seco/SecoResponsiveDrawer.png",
-    ],
-    tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.REACT, TAGS.HTML],
-    app: false,
+    ]),
+    tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.REACT, TAGS.STORYBOOK, TAGS.HTML],
   },
   {
     title: "Método John Mojica",
     description:
       currentLocale === "es"
-        ? `Construcción de una plataforma de e-learning de un instructor de peluquería para que dejara de impartir
-clases individuales y, en cambio, licenciar su método de enseñanza propio a peluquerías en todo el país.
-Lideré la arquitectura y el desarrollo frontend. Tomé decisiones clave sobre el stack tecnológico y la
-estructura del proyecto. La plataforma, aunque en desarrollo, ya está atrayendo socios potenciales y está
-posicionada para un lanzamiento en 2026, validando la solución como un modelo de negocio escalable.`
-        : `Built an e-learning platform for a hairstyling instructor to transition from giving individual classes to
-licensing his own teaching method to hair salons nationwide. Led the frontend architecture and
-development. Made key decisions regarding the technology stack and project structure. The platform,
-though still under development, is already attracting potential partners and is positioned for a 2026
-launch, validating the solution as a scalable business model.`,
-    image: [
+        ? "Plataforma de e-learning diseñada para que un instructor de estilismo escalara su modelo de clases individuales hacia el licenciamiento de su método a peluquerías en todo el país. Relevé requerimientos con el cliente, definí los flujos de UX, lideré las demos de producto y coordiné contratos de API con el equipo backend en Java mientras encabezaba la arquitectura en React y Next.js."
+        : "E-learning platform built for a hairstyling instructor to scale from individual classes to licensing his teaching method to salons nationwide. Gathered client requirements, defined UX workflows, led product demos, and coordinated API contracts with the Java backend team while leading the React and Next.js architecture.",
+    image: getProjectImages("JohnMojica", [
       "/projects/JohnMojica/JohnLogin.png",
       "/projects/JohnMojica/JohnHome.png",
       "/projects/JohnMojica/JohnExam.png",
       "/projects/JohnMojica/JohnMenu.png",
-    ],
+    ]),
     tags: [TAGS.TYPESCRIPT, TAGS.NEXT, TAGS.HTML, TAGS.TAILWIND, TAGS.REACT],
-    app: false,
-  },
-  {
-    title: "Notes App - Full Stack Challenge",
-    description:
-      currentLocale === "es"
-        ? `Aplicación full-stack de gestión de notas con categorización construida en respuesta a un desafío técnico en 3 días con ayuda de agentes de IA. Implementé arquitectura en capas (Controllers → Services → Repositories), gestión de estado con Context API, optimistic UI updates, y sistema many-to-many entre notas y categorías. Diseño responsive mobile-first con tema dark/light automático, accesibilidad WCAG, y deploy multi-plataforma (Railway + Netlify + Neon PostgreSQL).`
-        : `Full-stack note management application with categorization built in response to a technical challenge in 3 days with AI agent assistance. I implemented layered architecture (Controllers → Services → Repositories), state management with Context API, optimistic UI updates, and many-to-many system between notes and categories. Mobile-first responsive design with automatic dark/light theme, WCAG accessibility, and multi-platform deployment (Railway + Netlify + Neon PostgreSQL).`,
-    link: "https://notesappfe.netlify.app/",
-    image: [
-      "/projects/NotesApp/NotesMainDark.png",
-      "/projects/NotesApp/NotesMainLight.png",
-      "/projects/NotesApp/NotesResponsiveDark.png",
-      "/projects/NotesApp/NotesResponsiveLight.png",
-    ],
-    tags: [
-      TAGS.TYPESCRIPT,
-      TAGS.REACT,
-      TAGS.NODEJS,
-      TAGS.EXPRESS,
-      TAGS.POSTGRESQL,
-      TAGS.PRISMA,
-      TAGS.TAILWIND,
-    ],
-    app: false,
   },
 ];
 ---
 
 <section class="flex flex-col gap-y-16">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github, app }) => (
+    PROJECTS.map(({ image, title, description, tags, link, github, folderHint }) => (
       <article>
         <h3 class="mb-2 text-2xl font-semibold text-yellow-200">{title}</h3>
         <p class="mb-4 text-pretty text-lg">{description}</p>
         <ul class="mb-4 flex flex-wrap gap-x-4 gap-y-2 sm:flex-wrap md:flex-row lg:flex-row">
           {tags &&
-            tags.map((tag) => {
-              return (
-                <li>
-                  <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} px-2 py-1`}>
-                    <tag.icon class="size-4" />
-                    {tag.name}
-                  </span>
-                </li>
-              );
-            })}
+            tags.map((tag) => (
+              <li>
+                <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} px-2 py-1`}>
+                  <tag.icon class="size-4" />
+                  {tag.name}
+                </span>
+              </li>
+            ))}
         </ul>
-        {typeof image === "string" ? (
-          <div class="mx-auto flex max-w-2xl">
-            <div class="relative w-full">
-              <div class="relative z-20 h-64 overflow-hidden rounded-lg sm:h-80 xl:h-96 2xl:h-[480px]">
-                <img
-                  src={image}
-                  class="relative left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-                  alt={`Screenshot of ${title}`}
-                />
-              </div>
-            </div>
-          </div>
-        ) : (
-          <Carrousel images={image} />
-        )}
+        <Carrousel images={image} title={title} folderHint={folderHint} />
         <footer class="mt-2 flex justify-center gap-x-4">
           {github && (
             <LinkButton link={github}>
@@ -201,12 +200,7 @@ launch, validating the solution as a scalable business model.`,
           )}
           {link && (
             <LinkButton link={link}>
-              {app === true ? (
-                <>
-                  <LinkButton class="mr-1 size-6" />
-                  {currentLocale === "es" ? "Descargar app Android" : "Download Android App"}
-                </>
-              ) : github ? (
+              {github ? (
                 <>
                   <Storybook class="mr-1 size-6" />
                   {currentLocale === "es" ? "Ir a la librería" : "Go to library"}
